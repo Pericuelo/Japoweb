@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Temps de generació: 11-10-2011 a les 10:02:00
+-- Temps de generació: 12-10-2011 a les 21:00:31
 -- Versió del servidor: 5.1.54
 -- Versió de PHP : 5.3.5-1ubuntu7.2
 
@@ -599,7 +599,7 @@ CREATE TABLE IF NOT EXISTS `jos_jw_termino` (
   KEY `capitulo` (`capitulo`),
   KEY `id_user` (`id_user`),
   KEY `id_user_revision` (`id_user_revision`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=452 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=461 ;
 
 --
 -- Bolcant dades de la taula `jos_jw_termino`
@@ -1056,7 +1056,10 @@ INSERT INTO `jos_jw_termino` (`id`, `id_user`, `id_user_revision`, `kanji`, `es_
 (448, 64, 0, '一週間', 0, NULL, NULL, 'いっしゅうかん', 'una semana', 10, '2011-10-08 14:20:57'),
 (449, 64, 0, '曜', 1, 'ひへん', 'ヨウ', NULL, 'dia de la semana', 10, '2011-10-08 14:20:57'),
 (450, 64, 0, '何曜日', 0, NULL, NULL, 'なんようび', 'qué día de la semana', 10, '2011-10-08 14:20:57'),
-(451, 64, 0, '月曜日', 0, NULL, NULL, 'げつようび', 'lunes', 10, '2011-10-08 14:20:57');
+(451, 64, 0, '月曜日', 0, NULL, NULL, 'げつようび', 'lunes', 10, '2011-10-08 14:20:57'),
+(457, 65, 0, '本', 0, NULL, NULL, 'ほん', 'Libro', NULL, '2011-10-12 20:27:24'),
+(458, 65, 0, '', 0, NULL, NULL, 'とけい', 'Reloj', NULL, '2011-10-12 20:34:52'),
+(459, 65, 0, '大きい', 0, NULL, NULL, 'おおきい', 'Grande', NULL, '2011-10-12 20:36:18');
 
 -- --------------------------------------------------------
 
@@ -1075,6 +1078,12 @@ CREATE TABLE IF NOT EXISTS `jos_jw_termino_categoria` (
 -- Bolcant dades de la taula `jos_jw_termino_categoria`
 --
 
+INSERT INTO `jos_jw_termino_categoria` (`id_termino`, `id_categoria`) VALUES
+(457, 1),
+(458, 1),
+(459, 3),
+(459, 4),
+(459, 5);
 
 -- --------------------------------------------------------
 
@@ -1107,7 +1116,7 @@ CREATE TABLE IF NOT EXISTS `jos_menu` (
   PRIMARY KEY (`id`),
   KEY `componentid` (`componentid`,`menutype`,`published`,`access`),
   KEY `menutype` (`menutype`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Bolcant dades de la taula `jos_menu`
@@ -1115,7 +1124,8 @@ CREATE TABLE IF NOT EXISTS `jos_menu` (
 
 INSERT INTO `jos_menu` (`id`, `menutype`, `name`, `alias`, `link`, `type`, `published`, `parent`, `componentid`, `sublevel`, `ordering`, `checked_out`, `checked_out_time`, `pollid`, `browserNav`, `access`, `utaccess`, `params`, `lft`, `rgt`, `home`) VALUES
 (1, 'mainmenu', 'Home', 'home', 'index.php?option=com_content&view=frontpage', 'component', 1, 0, 20, 0, 1, 0, '0000-00-00 00:00:00', 0, 0, 0, 3, 'num_leading_articles=1\nnum_intro_articles=4\nnum_columns=2\nnum_links=4\norderby_pri=\norderby_sec=front\nshow_pagination=2\nshow_pagination_results=1\nshow_feed_link=1\nshow_noauth=\nshow_title=\nlink_titles=\nshow_intro=\nshow_section=\nlink_section=\nshow_category=\nlink_category=\nshow_author=\nshow_create_date=\nshow_modify_date=\nshow_item_navigation=\nshow_readmore=\nshow_vote=\nshow_icons=\nshow_pdf_icon=\nshow_print_icon=\nshow_email_icon=\nshow_hits=\nfeed_summary=\npage_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 1),
-(2, 'mainmenu', 'Japoweb default', 'japoweb-default', 'index.php?option=com_japoweb&view=old', 'component', 1, 0, 34, 0, 2, 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0);
+(2, 'mainmenu', 'Japoweb default', 'japoweb-default', 'index.php?option=com_japoweb&view=old', 'component', 1, 0, 34, 0, 2, 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0),
+(3, 'mainmenu', 'Add Termino', 'add-termino', 'index.php?option=com_japoweb&view=addtermino', 'component', 1, 0, 34, 0, 3, 0, '0000-00-00 00:00:00', 0, 0, 1, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1362,7 +1372,7 @@ INSERT INTO `jos_plugins` (`id`, `name`, `element`, `folder`, `access`, `orderin
 (31, 'System - Log', 'log', 'system', 0, 5, 0, 1, 0, 0, '0000-00-00 00:00:00', ''),
 (32, 'System - Remember Me', 'remember', 'system', 0, 6, 1, 1, 0, 0, '0000-00-00 00:00:00', ''),
 (33, 'System - Backlink', 'backlink', 'system', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', ''),
-(34, 'System - Mootools Upgrade', 'mtupgrade', 'system', 0, 8, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
+(34, 'System - Mootools Upgrade', 'mtupgrade', 'system', 0, 8, 1, 1, 0, 0, '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -1503,8 +1513,7 @@ CREATE TABLE IF NOT EXISTS `jos_session` (
 --
 
 INSERT INTO `jos_session` (`username`, `time`, `session_id`, `guest`, `userid`, `usertype`, `gid`, `client_id`, `data`) VALUES
-('', '1318230433', 'f9f51c6a5235e8f218fbd67fcd9947a9', 1, 0, '', 0, 0, '__default|a:5:{s:22:"session.client.browser";s:70:"Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1";s:15:"session.counter";i:1;s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:74:"/home/pere/aptanaWorkspace/japoweb/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"f67dece7c9e7417dad303d01f1996ae9";}'),
-('', '1318230436', 'pe4mjmmt2vn957hcjtb2k4d001', 1, 0, '', 0, 1, '__default|a:8:{s:15:"session.counter";i:1;s:19:"session.timer.start";i:1318230436;s:18:"session.timer.last";i:1318230436;s:17:"session.timer.now";i:1318230436;s:22:"session.client.browser";s:70:"Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:74:"/home/pere/aptanaWorkspace/japoweb/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"05f7a02ae0e1007f7bfb010f31f83b3d";}');
+('Pericuelo', '1318444893', 'sm67bbfupkqjqrngl12csuadp0', 0, 65, 'Registered', 18, 0, '__default|a:8:{s:22:"session.client.browser";s:70:"Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1";s:15:"session.counter";i:36;s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"65";s:4:"name";s:14:"Pere Fonolleda";s:8:"username";s:9:"Pericuelo";s:5:"email";s:20:"peterpunkz@gmail.com";s:8:"password";s:65:"0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj";s:14:"password_clear";s:0:"";s:8:"usertype";s:10:"Registered";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"0";s:3:"gid";s:2:"18";s:12:"registerDate";s:19:"2011-10-09 15:36:54";s:13:"lastvisitDate";s:19:"2011-10-12 17:58:18";s:10:"activation";s:0:"";s:6:"params";s:56:"admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n";s:3:"aid";i:1;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:74:"/home/pere/aptanaWorkspace/japoweb/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":5:{s:14:"admin_language";s:0:"";s:8:"language";s:0:"";s:6:"editor";s:0:"";s:8:"helpsite";s:0:"";s:8:"timezone";s:1:"0";}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:19:"session.timer.start";i:1318443324;s:18:"session.timer.last";i:1318444880;s:17:"session.timer.now";i:1318444893;s:13:"session.token";s:32:"e5a6370e706646c32fae33c8b22e1f1f";}');
 
 -- --------------------------------------------------------
 
@@ -1541,7 +1550,7 @@ CREATE TABLE IF NOT EXISTS `jos_templates_menu` (
 --
 
 INSERT INTO `jos_templates_menu` (`template`, `menuid`, `client_id`) VALUES
-('rhuk_milkyway', 0, 0),
+('japoweb', 0, 0),
 ('khepri', 0, 1);
 
 -- --------------------------------------------------------
@@ -1577,10 +1586,10 @@ CREATE TABLE IF NOT EXISTS `jos_users` (
 --
 
 INSERT INTO `jos_users` (`id`, `name`, `username`, `email`, `password`, `usertype`, `block`, `sendEmail`, `gid`, `registerDate`, `lastvisitDate`, `activation`, `params`) VALUES
-(62, 'Administrator', 'admin', 'japoweb@japoweb.com', 'c40042179c3187f3037e60da0cb8914b:7hNtStP4IFb4oPYgAXk8tOkBXmWdPtkH', 'Super Administrator', 0, 1, 25, '2011-10-09 13:36:39', '2011-10-09 16:29:11', '', ''),
+(62, 'Administrator', 'admin', 'japoweb@japoweb.com', 'c40042179c3187f3037e60da0cb8914b:7hNtStP4IFb4oPYgAXk8tOkBXmWdPtkH', 'Super Administrator', 0, 1, 25, '2011-10-09 13:36:39', '2011-10-12 17:57:47', '', ''),
 (63, 'neko', 'neko', 'josexu@gmail.com', '27d49f4bb71144062cad1392748dcf26', 'Registered', 0, 0, 18, '2011-10-09 15:32:48', '0000-00-00 00:00:00', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n'),
 (64, 'iru', 'iru', 'iru.bcn@gmail.com', '27d49f4bb71144062cad1392748dcf26', 'Registered', 0, 0, 18, '2011-10-09 15:33:00', '0000-00-00 00:00:00', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n'),
-(65, 'Pere Fonolleda', 'Pere', 'peterpunkz@gmail.com', '0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj', 'Registered', 0, 0, 18, '2011-10-09 15:36:54', '0000-00-00 00:00:00', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n');
+(65, 'Pere Fonolleda', 'Pericuelo', 'peterpunkz@gmail.com', '0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj', 'Registered', 0, 0, 18, '2011-10-09 15:36:54', '2011-10-12 18:15:31', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n');
 
 -- --------------------------------------------------------
 
