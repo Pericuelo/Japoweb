@@ -1,79 +1,30 @@
-body{
-	font-family:Geneva, Verdana, sans-serif;
-}
-.link_capitulo a{
-	text-decoration:none;
-	color: blue;
-	background-color: white;
-}
-.cabecera_capitulo{
-	color: white;
-	background-color: red;
-	text-align:center;
-	padding:3px;
-}
-.leyenda tr{
-	background-color:#06F;
-}
-.leyenda td{
-	color:#000;
-	padding-left:4px;
-}
-.kanji_indice{
-	padding-left:10px;
-}
-.kanji_indice a{
-	color:#000;
-	text-decoration:none;
-	font-size:large;
-}
-.kanji_row{
-	background-color:#9FF;
-}
-.kanji_cell{
-	font-size:xx-large;
-	padding:8px;
-}
-.kunyomi_cell{
-	font-size:medium;
-	padding:4px;
-	padding-left:10px;
-}
-.onyomi_cell{
-	font-size:medium;
-	padding:4px;
-}
-.significado_cell{
-	font-size:medium;
-	padding:4px;
-}
-.kanji_links_cell{
-	padding:4px;
-}
-.kanji_links_cell a{
-	text-decoration:none;
-}
-.vocabulario_par{
-	background-color:#CCC;
-}
-.vocabulario_par td{
-	padding:2px;
-}
-.vocabulario_impar{
-	background-color:#FFF;
-}
-.vocabulario_impar td{
-	padding:2px;
-}
-.vocabulario_kanji{
-	float:left;
-}
-.vocabulario_hiragana{
-	float:left;
-	padding-left:15px;
-}
-.vocabulario_significado{
-	float:left;
-	font-weight:bold;
-	padding-left:15px;
-}
+/** OLD **/
+body{ font-family:Geneva, Verdana, sans-serif; }
+.link_capitulo a { text-decoration:none; color: blue; background-color: white; }
+.cabecera_capitulo { color: white; background-color: red; text-align:center; padding:3px; }
+.leyenda tr { background-color:#06F; }
+.leyenda td { color:#000; padding-left:4px; }
+.kanji_indice { padding-left:10px; }
+.kanji_indice a { color:#000; text-decoration:none; font-size:large; }
+.kanji_row { background-color:#9FF; }
+.kanji_cell { font-size:xx-large; padding:8px; }
+.kunyomi_cell { font-size:medium; padding:4px; padding-left:10px; }
+.onyomi_cell { font-size:medium; padding:4px; }
+.significado_cell { font-size:medium; padding:4px; }
+.kanji_links_cell { padding:4px; }
+.kanji_links_cell a { text-decoration:none; }
+.vocabulario_par { background-color:#CCC; }
+.vocabulario_par td { padding:2px; }
+.vocabulario_impar { background-color:#FFF; }
+.vocabulario_impar td{ padding:2px; }
+.vocabulario_kanji {float:left; }
+.vocabulario_hiragana { float:left; padding-left:15px; }
+.vocabulario_significado { float:left; font-weight:bold; padding-left:15px; }
+
+/** ADD TERMINO */
+label, .label { width: 120px; float: left; }
+
+#cat_selector { margin-left: 120px; height: 100px; width: 520px; overflow-y: scroll; border: 1px solid #cccccc; }
+#cat_selector div.categoria { width: 90px; float: left; margin: 5px 5px; cursor: pointer; }
+#cat_text_field { width: 520px; }
+#limpiar { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 4px 8px; }

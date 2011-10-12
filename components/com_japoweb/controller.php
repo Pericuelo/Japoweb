@@ -25,9 +25,28 @@ class JapowebController extends JController
      *
      * @access    public
      */
-    function display()
-    {
+    function display() {
         parent::display();
     }
+	
+	function save() {
+		$id = JRequest::getVar('id');
+		if($id) {
+			// Update
+			$model = $this->getModel('addtermino');
+		} else {
+			// Create
+			$model = $this->getModel('addtermino');
+			
+			// kana, kanji, significado, categorias, id_user
+			$kana = JRequest::getVar('kana');
+			$kanji = JRequest::getVar('kanji');
+			$significado = JRequest::getVar('significado');
+			$categorias = JRequest::getVar('categorias');
+			$idUser = JRequest::getVar('id_user');
+			
+			$model->createTermino($kana, $kanji, $significado, $categorias, $idUser);
+		}
+	}
  
 }
