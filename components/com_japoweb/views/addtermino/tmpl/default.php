@@ -4,18 +4,19 @@
  
 defined('_JEXEC') or die('Restricted access'); 
 
-$filename = 'japoweb.js';
+$filenameJs = 'japoweb.js';
+$filenameCss = 'japoweb.css';
 // Add the path parameter if the path is different than 'media/system/js/'
 $path = 'components/com_japoweb/assets/';
 // MooTools will load if it is not already loaded
-JHTML::script($filename, $path, true);
-
+JHTML::script($filenameJs, $path,  true);
+JHTML::stylesheet($filenameCss, $path);
 ?>
 
 <?php
 	$user =& JFactory::getUser();
 	if(!($userId = $user->id)) {
-		// Redirect. No ha usuario logueado
+		// Redirect. No hay usuario logueado
 	}
 ?>
 
