@@ -22,8 +22,6 @@ function clearCategorias() {
 }
 
 function buscarImagenes() {
-	//prevent the page from changing
-	event.stop();
 	//make the ajax call, get DIV with images
 	var req = new Request.HTML({
 		method: 'get',
