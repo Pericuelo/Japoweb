@@ -4,18 +4,30 @@
  
 defined('_JEXEC') or die('Restricted access'); 
 
-$filename = 'japoweb.js';
+$filenameJs = 'japoweb.js';
+$filenameCss = 'japoweb.css';
 // Add the path parameter if the path is different than 'media/system/js/'
 $path = 'components/com_japoweb/assets/';
+$pathTbl = $path.'textboxlist/';
 // MooTools will load if it is not already loaded
-JHTML::script($filename, $path, true);
+JHTML::script($filenameJs, $path,  true);
+JHTML::stylesheet($filenameCss, $path);
+
+// TextBoxList
+JHTML::script('TextboxList.js', $pathTbl,  true);
+JHTML::script('TextboxList.Autocomplete.js', $pathTbl,  true);
+JHTML::script('TextboxList.Autocomplete.Binary.js', $pathTbl,  true);
+JHTML::script('GrowingInput.js', $pathTbl,  true);
+
+JHTML::stylesheet('TextboxList.css', $pathTbl);
+JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 
 ?>
 
 <?php
 	$user =& JFactory::getUser();
 	if(!($userId = $user->id)) {
-		// Redirect. No ha usuario logueado
+		// Redirect. No hay usuario logueado
 	}
 ?>
 

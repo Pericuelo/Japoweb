@@ -21,6 +21,13 @@ window.addEvent( 'domready', function() {
 			//onComplete: function(response) { alert('Request completed successfully.'); $('message-here').setStyle('background','#fffea1');}
 		}).send();
  	});	
+
+	var textBo = new TextboxList('cat_text_field', {unique: true, plugins: {autocomplete: {
+		minLength: 2,
+		queryRemote: true,
+		remote: {url: 'index.php?option=com_japoweb&view=addtermino&format=raw'}
+	}}});
+
 });
 
 function clearCategorias() {
