@@ -7,9 +7,28 @@ window.addEvent( 'domready', function() {
 			$('categorias').value += currentSpan.id+"|";
 		});
 	});
+	
+	$('ajax-get-images').addEvent('click', function(event) {
+		//prevent the page from changing
+		event.stop();
+		//make the ajax call, get DIV with images
+		var req = new Request.HTML({
+			method: 'get',
+			url: 'components/com_japoweb/libs/ajaxImgDiv.php?q='+$('q').get('value'),
+			data: { 'do' : '1' },
+			//onRequest: /*Change class to loading*/,
+			update: $('google_imgs'),
+			//onComplete: function(response) { alert('Request completed successfully.'); $('message-here').setStyle('background','#fffea1');}
+		}).send();
+ 	});	
 });
 
 function clearCategorias() {
 	$('cat_text_field').value = '';
 	$('categorias').value = '';
 }
+
+function select_img(id){
+	$('selected_image').set('html','<img src="'+$('goo_img'+id).get('value')+'">');
+}
+
