@@ -8,20 +8,6 @@ window.addEvent( 'domready', function() {
 		});
 	});
 	
-	$('ajax-get-images').addEvent('click', function(event) {
-		//prevent the page from changing
-		event.stop();
-		//make the ajax call, get DIV with images
-		var req = new Request.HTML({
-			method: 'get',
-			url: 'components/com_japoweb/libs/ajaxImgDiv.php?q='+$('q').get('value'),
-			data: { 'do' : '1' },
-			//onRequest: /*Change class to loading*/,
-			update: $('google_imgs'),
-			//onComplete: function(response) { alert('Request completed successfully.'); $('message-here').setStyle('background','#fffea1');}
-		}).send();
- 	});	
-
 	var textBo = new TextboxList('cat_text_field', {unique: true, plugins: {autocomplete: {
 		minLength: 2,
 		queryRemote: true,
@@ -35,6 +21,20 @@ function clearCategorias() {
 	$('categorias').value = '';
 }
 
+function buscarImagenes() {
+	//prevent the page from changing
+	event.stop();
+	//make the ajax call, get DIV with images
+	var req = new Request.HTML({
+		method: 'get',
+		url: 'components/com_japoweb/libs/ajaxImgDiv.php?q='+$('image_query').get('value'),
+		data: { 'do' : '1' },
+		//onRequest: /*Change class to loading*/,
+		update: $('google_imgs'),
+		//onComplete: function(response) { alert('Request completed successfully.'); $('message-here').setStyle('background','#fffea1');}
+	}).send();
+}
+ 	
 function select_img(id){
 	$('selected_image').set('html','<img src="'+$('goo_img'+id).get('value')+'">');
 }

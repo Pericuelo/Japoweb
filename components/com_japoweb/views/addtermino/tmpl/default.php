@@ -59,7 +59,8 @@ JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 			<input type="hidden" name="categorias" id="categorias" value=""/>
 		</div>
 		<div>
-			<div>Imagen:</div>
+			<label for="imagen">Imágen:</label>
+			<input id="image_query" type="text" value=""/><span id="buscar_imagenes" onclick="buscarImagenes()">Buscar Imagenes</span>
 			<div id="google_imgs"></div>
 		</div>
 		<div>

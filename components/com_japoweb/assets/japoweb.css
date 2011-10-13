@@ -28,4 +28,4 @@ label, .label { width: 120px; float: left; }
 #cat_selector { margin-left: 120px; height: 100px; width: 520px; overflow-y: scroll; border: 1px solid #cccccc; }
 #cat_selector div.categoria { width: 90px; float: left; margin: 5px 5px; cursor: pointer; }
 #cat_text_field { width: 520px; }
-#limpiar { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 4px 8px; }
+#limpiar, #buscar_imagenes { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 4px 8px; }
