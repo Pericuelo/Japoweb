@@ -24,6 +24,7 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 /** ADD TERMINO */
 label, .label { width: 120px; float: left; }
 
+.textboxlist { float: left; width: 520px; }
 #cat_selector { margin-left: 120px; height: 100px; width: 520px; overflow-y: scroll; border: 1px solid #cccccc; }
 #cat_selector div.categoria { width: 90px; float: left; margin: 5px 5px; cursor: pointer; }
 #cat_text_field { width: 520px; }
