@@ -37,7 +37,7 @@ JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 	<form method="post" enctype="multipart/form-data" action="<?php echo JRoute::_('index.php');?>">
 		<div>
 			<label for="kana">Kana:</label>
-			<input type="text" name="kana" value="<?php echo $this->termino->kana; ?>"/>
+			<input type="text" name="kana" id="kana" onblur="buscarImagenesSiNoSeleccionada('kana');" value="<?php echo $this->termino->kana; ?>"/>
 		</div>
 		<div>
 			<label for="kanji">Kanji:</label>
@@ -45,7 +45,7 @@ JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 		</div>
 		<div>
 			<label for="significado">Significado:</label>
-			<input type="text" name="significado" value="<?php echo $this->termino->significado; ?>"/>
+			<input type="text" name="significado" id="significado" onblur="buscarImagenesSiNoSeleccionada('significado');" value="<?php echo $this->termino->significado; ?>"/>
 		</div>
 		<div>
 			<label for="categoria">Categorias:</label>
@@ -61,8 +61,10 @@ JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 		<div>
 			<label for="imagen">Imágen:</label>
 			<div id="selected_image"></div>
+			<input type="hidden" name="google_image" id="google_image" value=""/>
+			<input type="hidden" name="original_image" id="original_image" value=""/>
 			<label for="buscar_imagenes">Buscar Imágenes:</label>
-			<input id="image_query" type="text" value=""/><span id="buscar_imagenes" onclick="buscarImagenes()">Buscar Imagenes</span>
+			<input id="image_query" type="text" value=""/><span id="buscar_imagenes" onclick="buscarImagenes('image_query');">Buscar Imagenes</span>
 			<div id="google_imgs"></div>
 		</div>
 		<div>

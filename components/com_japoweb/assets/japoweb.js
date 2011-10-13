@@ -13,7 +13,6 @@ window.addEvent( 'domready', function() {
 		queryRemote: true,
 		remote: {url: 'index.php?option=com_japoweb&view=addtermino&format=raw'}
 	}}});
-
 });
 
 function clearCategorias() {
@@ -21,11 +20,15 @@ function clearCategorias() {
 	$('categorias').value = '';
 }
 
-function buscarImagenes() {
+function buscarImagenesSiNoSeleccionada(query_source){
+	if ($('google_image').get('value') == "") buscarImagenes(query_source);
+}
+
+function buscarImagenes(query_source) {
 	//make the ajax call, get DIV with images
 	var req = new Request.HTML({
 		method: 'get',
-		url: 'components/com_japoweb/libs/ajaxImgDiv.php?q='+$('image_query').get('value'),
+		url: 'components/com_japoweb/libs/ajaxImgDiv.php?q='+$(query_source).get('value'),
 		data: { 'do' : '1' },
 		//onRequest: /*Change class to loading*/,
 		update: $('google_imgs'),
@@ -34,6 +37,9 @@ function buscarImagenes() {
 }
  	
 function select_img(id){
+	$('google_image').set('value',$('goo_img'+id).get('value'));
+	$('original_image').set('value',$('orig_img'+id).get('value'));
+	
 	$('selected_image').set('html','<img src="'+$('goo_img'+id).get('value')+'">');
 }
 
