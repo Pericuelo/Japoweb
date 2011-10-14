@@ -49,7 +49,25 @@ function buscarImagenes(query_source, cuantas) {
 		}).send();
 	}
 }
- 	
+
+function buscarTerminos(kana) {
+	//make the ajax call, get DIV with images
+	if(kana != ""){
+		var req = new Request({
+			method: 'get',
+			url: 'index.php?option=com_japoweb&view=addtermino&format=termino&kana='+kana,
+      data: { 'do' : '1' },
+      onComplete: function(response) { cargarTermino(response); }
+		}).send();
+	}
+}
+
+function cargarTermino(terminos){
+	$('google_imgs').set('html','Buscando imagenes con...');	
+	terminos = JSON.decode(terminos);
+	$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+terminos.imagen+'">');
+	
+}
 function select_img(id){
 	$('google_image').set('value',$('goo_img'+id).get('value'));
 	$('original_image').set('value',$('orig_img'+id).get('value'));

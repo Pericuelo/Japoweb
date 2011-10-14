@@ -78,7 +78,7 @@ JHTML::stylesheet($filenameCss, $path);
 		<div>
 			<label for="buscar_imagenes">Buscar Imágenes:</label>
 			<input id="image_query" type="text" value=""/>
-			<span id="buscar_imagenes" onclick="actualizarCategorias(); buscarImagenes('image_query', 20);">Buscar Imaáenes</span>
+			<span id="buscar_imagenes" onclick="buscarTerminos('くるま'); buscarImagenes('image_query', 20);">Buscar Imágenes</span>
 			<span id="buscar_imagenes" onclick="buscarImagenes('image_query',100);">Buscar Muuuchas Imágenes</span>
 			<div id="google_imgs"></div>
 		</div>
