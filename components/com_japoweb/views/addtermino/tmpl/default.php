@@ -9,18 +9,22 @@ $filenameCss = 'japoweb.css';
 // Add the path parameter if the path is different than 'media/system/js/'
 $path = 'components/com_japoweb/assets/';
 $pathTbl = $path.'textboxlist/';
+$pathKB = $path.'virtualkeyboard/';
 // MooTools will load if it is not already loaded
-JHTML::script($filenameJs, $path,  true);
-JHTML::stylesheet($filenameCss, $path);
+//JHTML::script($filenameJs, $path,  true);
+JHTML::script('anadirTermino.js', $path,  true);
 
 // TextBoxList
 JHTML::script('TextboxList.js', $pathTbl,  true);
 JHTML::script('TextboxList.Autocomplete.js', $pathTbl,  true);
 JHTML::script('TextboxList.Autocomplete.Binary.js', $pathTbl,  true);
 JHTML::script('GrowingInput.js', $pathTbl,  true);
+//VirtualKeyboard
+JHTML::script('vk_loader.js', $pathKB, true);
 
 JHTML::stylesheet('TextboxList.css', $pathTbl);
 JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
+JHTML::stylesheet($filenameCss, $path);
 
 ?>
 
@@ -34,14 +38,19 @@ JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 
 <h1 class="componentheading"><?php echo JText::_('Añadir término'); ?></h1>
 <div class="componentbody">
+			<button onclick="VirtualKeyboard.toggle('kana', 'keyboard');">Teclado Japonés</button>
+				 	<div id="keyboard"></div>
 	<form method="post" enctype="multipart/form-data" action="<?php echo JRoute::_('index.php');?>">
 		<div>
 			<label for="kana">Kana:</label>
-			<input type="text" name="kana" id="kana" onblur="buscarImagenesSiNoSeleccionada('kana');" value="<?php echo $this->termino->kana; ?>"/>
+			<input class="keyboardInput" type="text" name="kana" id="kana" onblur="buscarImagenesSiNoSeleccionada('kana');"
+				 onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo $this->termino->kana; ?>"/>
+
 		</div>
 		<div>
 			<label for="kanji">Kanji:</label>
-			<input type="text" name="kanji" value="<?php echo $this->termino->kanji; ?>"/>
+			<input class="keyboardInput" type="text" name="kanji" id="kanji" 
+				onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo $this->termino->kanji; ?>"/>
 		</div>
 		<div>
 			<label for="significado">Significado:</label>
@@ -57,14 +66,20 @@ JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 			</div>
 			<!-- En realidad guardamos aquí los id's de las categorias de la forma "1|34|6|28|"... -->
 			<input type="hidden" name="categorias" id="categorias" value=""/>
+			<input type="hidden" name="categorias_nombres" id="categorias_nombres" value=""/>
 		</div>
 		<div>
 			<label for="imagen">Imágen:</label>
-			<div id="selected_image"></div>
+			<span id="eliminar_imagen" onclick="eliminar_imagen();">Eliminar Imágen</span>
+			<div id="selected_image">Sin Imagen</div>
 			<input type="hidden" name="google_image" id="google_image" value=""/>
 			<input type="hidden" name="original_image" id="original_image" value=""/>
+		</div>
+		<div>
 			<label for="buscar_imagenes">Buscar Imágenes:</label>
-			<input id="image_query" type="text" value=""/><span id="buscar_imagenes" onclick="buscarImagenes('image_query');">Buscar Imagenes</span>
+			<input id="image_query" type="text" value=""/>
+			<span id="buscar_imagenes" onclick="actualizarCategorias(); buscarImagenes('image_query', 20);">Buscar Imaáenes</span>
+			<span id="buscar_imagenes" onclick="buscarImagenes('image_query',100);">Buscar Muuuchas Imágenes</span>
 			<div id="google_imgs"></div>
 		</div>
 		<div>

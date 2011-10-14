@@ -29,10 +29,10 @@ TextboxList.Autocomplete = new Class({
 			url: '',
 			param: 'search',
 			extraParams: {},
-			loadPlaceholder: 'Please wait...'
+			loadPlaceholder: 'Buscando categorías...'
 		},
 		method: 'standard',
-		placeholder: 'Type to receive suggestions'
+		placeholder: 'Escribe una categorías y pulsa "ENTER" para añadirla.'
 	},
 	
 	initialize: function(textboxlist, options){

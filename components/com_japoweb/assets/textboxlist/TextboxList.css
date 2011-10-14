@@ -17,7 +17,7 @@
 .textboxlist-bit-box-hover { background: #BBCEF1; border: 1px solid #6D95E0; }
 .textboxlist-bit-box-focus { border-color: #598BEC; background: #598BEC; color: #fff; }
 .textboxlist-bit-box-focus .textboxlist-bit-box-deletebutton { background-position: bottom; }
-
+.fondo-rojo {background: #FF5500;}
 /*  TextboxList Style guidelines 
 			This style doesn't necessarily have to be in a separate file. 
 			It's advisable not to set widths and margins from here, but instead apply it to a particular object or class (#id .textboxlist { width: xxx } or .class .textboxlist { width: xxx })

@@ -157,6 +157,8 @@ var TextboxList = new Class({
 				if (this.options.hideEditableBits) b.hide();
 			}
 		}
+		//Añadir
+		if (bit.getValue()[0] == null) bit.ponerRojo();
 	},
 	
 	onRemove: function(bit){
@@ -166,7 +168,7 @@ var TextboxList = new Class({
 		if (prior && prior.is('editable')) prior.remove();
 		this.focusRelative('next', bit);
 	},
-	
+		
 	focusRelative: function(dir, to){
 		var b = this.getBit($($pick(to, this.current))['get' + dir.capitalize()]());
 		if (b) b.focus();
@@ -242,6 +244,11 @@ var TextboxListBit = new Class({
 		});
   },
 
+	//Añadido
+	ponerRojo: function(){
+		this.bit.addClass('fondo-rojo');
+	},
+	
 	inject: function(element, where){
 		this.bit.inject(element, where);	
 		this.textboxlist.onAdd(this);	
