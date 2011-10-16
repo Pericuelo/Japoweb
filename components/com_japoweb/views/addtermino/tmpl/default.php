@@ -26,6 +26,8 @@ JHTML::stylesheet('TextboxList.css', $pathTbl);
 JHTML::stylesheet('TextboxList.Autocomplete.css', $pathTbl);
 JHTML::stylesheet($filenameCss, $path);
 
+//Modal windows
+JHTML::_('behavior.modal'); 
 ?>
 
 <?php

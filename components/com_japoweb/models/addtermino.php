@@ -15,25 +15,42 @@ class JapowebModelAddtermino extends JModel {
 		return $db->loadObjectList();
 	}
 
-	function getTerminos($kana){
+	function getTablaTerminos($kana){
 		$db =& JFactory::getDBO();
 		$db->setQuery("SELECT * FROM #__jw_termino WHERE kana = '$kana'");		
 		$terminos = $db->loadObjectList();
 		foreach($terminos as $termino) {
 			//Categorias
-			$db->setQuery("SELECT c.id, c.nombre FROM #__jw_termino t, #__jw_categoria c, #__jw_termino_categoria tc 
-							WHERE t.id = tc.id_termino AND tc.id_categoria = c.id");		
-			$categorias[$termino->id] = $db->loadObjectList();
+			//$db->setQuery("SELECT c.id, c.nombre FROM #__jw_termino t, #__jw_categoria c, #__jw_termino_categoria tc 
+			//				WHERE t.id = tc.id_termino AND tc.id_categoria = c.id");		
+			//$categorias[$termino->id] = $db->loadObjectList();
+			
 			//Imágenes
 			$db->setQuery("SELECT fichero FROM #__jw_imagen 
 							WHERE id_termino = ".$termino->id);		
-			$imagen = $db->loadResult();		
+			$result['imagenes'][$termino->id] = $db->loadResult();		
 		}
 		$result['terminos'] = $terminos;
-		$result['categorias'] = $categorias;
-		$result['imagen'] = $imagen;
+		//$result['categorias'] = $categorias;
 		
 		return $result;
+	}	
+	
+	function getTermino($id){
+		$db =& JFactory::getDBO();
+		$db->setQuery("SELECT kana, kanji, significado FROM #__jw_termino WHERE id = '$id'");		
+		$termino = $db->loadObjectList();
+		//Categorias
+		$db->setQuery("SELECT c.id, c.nombre FROM #__jw_termino t, #__jw_categoria c, #__jw_termino_categoria tc 
+						WHERE t.id = tc.id_termino AND tc.id_categoria = c.id");		
+		$categorias = $db->loadObjectList();
+		//Imágen
+		$db->setQuery("SELECT fichero FROM #__jw_imagen 
+						WHERE id_termino = ".$id);		
+		$termino['imagen'] = $db->loadResult();		
+		$termino['categorias'] = $categorias;
+		
+		return $termino;
 	}	
 	
 	/**

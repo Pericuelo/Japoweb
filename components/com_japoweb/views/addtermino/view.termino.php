@@ -18,7 +18,7 @@ class JapowebViewAddtermino extends JView {
     {
         $model =& $this->getModel();
 		
-		$terminos = $model->getTerminos(JRequest::getVar('kana'));
+		$terminos = $model->getTermino(JRequest::getVar('id'));
 				
 		echo json_encode($terminos);
     }

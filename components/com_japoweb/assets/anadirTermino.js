@@ -55,19 +55,43 @@ function buscarTerminos(kana) {
 	if(kana != ""){
 		var req = new Request({
 			method: 'get',
-			url: 'index.php?option=com_japoweb&view=addtermino&format=termino&kana='+kana,
+			url: 'index.php?option=com_japoweb&view=addtermino&format=terminos_table&kana='+kana,
       data: { 'do' : '1' },
-      onComplete: function(response) { cargarTermino(response); }
+      onComplete: function(response) { mostrarPopupTerminos(response); }
 		}).send();
 	}
 }
 
-function cargarTermino(terminos){
-	$('google_imgs').set('html','Buscando imagenes con...');	
-	terminos = JSON.decode(terminos);
-	$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+terminos.imagen+'">');
-	
+function mostrarPopupTerminos(response){
+	options = {size: {x: 300, y: 250}};
+	SqueezeBox.initialize(options);
+	SqueezeBox.setContent('string',response);	
 }
+
+function obtenerTermino(id){
+	SqueezeBox.close();
+	var req = new Request({
+		method: 'get',
+		url: 'index.php?option=com_japoweb&view=addtermino&format=termino&id='+id,
+	    data: { 'do' : '1' },
+	    onComplete: function(response) { cargarTermino(response); }
+	}).send();
+}
+
+function cargarTermino(termino){
+	$('google_imgs').set('html',termino);
+	term = JSON.decode(termino);
+
+	$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+term.imagen+'">');
+	$('kana').set('value',term[0].kana);
+	$('kanji').set('value',term[0].kanji);
+	$('significado').set('value',term[0].significado);
+	$('cat_text_field').
+	Array.each(term.categorias, function(cat, index){
+		textBo.add(cat.nombre,cat.id);
+	});	
+}
+
 function select_img(id){
 	$('google_image').set('value',$('goo_img'+id).get('value'));
 	$('original_image').set('value',$('orig_img'+id).get('value'));
