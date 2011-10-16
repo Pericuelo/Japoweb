@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Temps de generació: 12-10-2011 a les 21:00:31
+-- Temps de generació: 16-10-2011 a les 22:29:01
 -- Versió del servidor: 5.1.54
 -- Versió de PHP : 5.3.5-1ubuntu7.2
 
@@ -284,12 +284,14 @@ CREATE TABLE IF NOT EXISTS `jos_content` (
   KEY `idx_state` (`state`),
   KEY `idx_catid` (`catid`),
   KEY `idx_createdby` (`created_by`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Bolcant dades de la taula `jos_content`
 --
 
+INSERT INTO `jos_content` (`id`, `title`, `alias`, `title_alias`, `introtext`, `fulltext`, `state`, `sectionid`, `mask`, `catid`, `created`, `created_by`, `created_by_alias`, `modified`, `modified_by`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `images`, `urls`, `attribs`, `version`, `parentid`, `ordering`, `metakey`, `metadesc`, `access`, `hits`, `metadata`) VALUES
+(1, 'Article de test', 'article-de-test', '', '<h1>The Problem With Popplers</h1>\r\n<p>Pansy. Hey, what kinda party is this? There''s no booze and only one hooker. Man, I''m sore all over. I feel like I just went ten rounds with mighty Thor.</p>\r\n<h2>That''s Lobstertainment</h2>\r\n<p>Bender, hurry! This fuel''s expensive! Also, we''re dying! How much did you make me? Now, now. Perfectly symmetrical violence never solved anything. And why did ''I'' have to take a cab? Spare me your space age technobabble, Attila the Hun! I saw you with those two "ladies of the evening" at Elzars. Explain that.</p>\r\n<ul>\r\n<li>And why did ''I'' have to take a cab?</li>\r\n<li>Bender, I didn''t know you liked cooking. That''s so cute.</li>\r\n<li>Ugh, it''s filthy! Why not create a National Endowment for Strip Clubs while we''re at it?</li>\r\n</ul>\r\n<h3>The Sting</h3>\r\n<p>We don''t have a brig. No! The cat shelter''s on to me. Pansy. Or a guy who burns down a bar for the insurance money! Is today''s hectic lifestyle making you tense and impatient? I just want to talk. It has nothing to do with mating. Fry, that doesn''t make sense.</p>\r\n<h4>I, Roommate</h4>\r\n<p>Oh, I don''t have time for this. I have to go and buy a single piece of fruit with a coupon and then return it, making people wait behind me while I complain. Leela''s gonna kill me. When I was first asked to make a film about my nephew, Hubert Farnsworth, I thought "Why should I?" Then later, Leela made the film. But if I did make it, you can bet there would have been more topless women on motorcycles. Roll film! Can we have Bender Burgers again? This opera''s as lousy as it is brilliant! Your lyrics lack subtlety. You can''t just have your characters announce how they feel. That makes me feel angry!</p>\r\n<ol>\r\n<li>For example, if you killed your grandfather, you''d cease to exist!</li>\r\n<li>I''ll get my kit!</li>\r\n<li>Yep, I remember. They came in last at the Olympics, then retired to promote alcoholic beverages!</li>\r\n<li>I''m sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in.</li>\r\n<li>Good man. Nixon''s pro-war and pro-family.</li>\r\n</ol>\r\n<h5>I Dated a Robot</h5>\r\n<p>Oh, how awful. Did he at least die painlessly? …To shreds, you say. Well, how is his wife holding up? …To shreds, you say. I feel like I was mauled by Jesus. I was all of history''s great robot actors - Acting Unit 0.8; Thespomat; David Duchovny! Kids have names? I was having the most wonderful dream. Except you were there, and you were there, and you were there!</p>', '', 1, 0, 0, 0, '2011-10-16 17:51:58', 62, '', '0000-00-00 00:00:00', 0, 0, '0000-00-00 00:00:00', '2011-10-16 17:51:58', '0000-00-00 00:00:00', '', '', 'show_title=\nlink_titles=\nshow_intro=\nshow_section=\nlink_section=\nshow_category=\nlink_category=\nshow_vote=\nshow_author=\nshow_create_date=\nshow_modify_date=\nshow_pdf_icon=\nshow_print_icon=\nshow_email_icon=\nlanguage=\nkeyref=\nreadmore=', 1, 0, 1, '', '', 0, 0, 'robots=\nauthor=');
 
 -- --------------------------------------------------------
 
@@ -307,6 +309,8 @@ CREATE TABLE IF NOT EXISTS `jos_content_frontpage` (
 -- Bolcant dades de la taula `jos_content_frontpage`
 --
 
+INSERT INTO `jos_content_frontpage` (`content_id`, `ordering`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -599,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `jos_jw_termino` (
   KEY `capitulo` (`capitulo`),
   KEY `id_user` (`id_user`),
   KEY `id_user_revision` (`id_user_revision`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=461 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=460 ;
 
 --
 -- Bolcant dades de la taula `jos_jw_termino`
@@ -1083,7 +1087,16 @@ INSERT INTO `jos_jw_termino_categoria` (`id_termino`, `id_categoria`) VALUES
 (458, 1),
 (459, 3),
 (459, 4),
-(459, 5);
+(459, 5),
+(3, 6),
+(6, 6),
+(10, 6),
+(36, 6),
+(39, 6),
+(43, 6),
+(46, 6),
+(450, 6),
+(451, 6);
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1129,7 @@ CREATE TABLE IF NOT EXISTS `jos_menu` (
   PRIMARY KEY (`id`),
   KEY `componentid` (`componentid`,`menutype`,`published`,`access`),
   KEY `menutype` (`menutype`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Bolcant dades de la taula `jos_menu`
@@ -1125,7 +1138,8 @@ CREATE TABLE IF NOT EXISTS `jos_menu` (
 INSERT INTO `jos_menu` (`id`, `menutype`, `name`, `alias`, `link`, `type`, `published`, `parent`, `componentid`, `sublevel`, `ordering`, `checked_out`, `checked_out_time`, `pollid`, `browserNav`, `access`, `utaccess`, `params`, `lft`, `rgt`, `home`) VALUES
 (1, 'mainmenu', 'Home', 'home', 'index.php?option=com_content&view=frontpage', 'component', 1, 0, 20, 0, 1, 0, '0000-00-00 00:00:00', 0, 0, 0, 3, 'num_leading_articles=1\nnum_intro_articles=4\nnum_columns=2\nnum_links=4\norderby_pri=\norderby_sec=front\nshow_pagination=2\nshow_pagination_results=1\nshow_feed_link=1\nshow_noauth=\nshow_title=\nlink_titles=\nshow_intro=\nshow_section=\nlink_section=\nshow_category=\nlink_category=\nshow_author=\nshow_create_date=\nshow_modify_date=\nshow_item_navigation=\nshow_readmore=\nshow_vote=\nshow_icons=\nshow_pdf_icon=\nshow_print_icon=\nshow_email_icon=\nshow_hits=\nfeed_summary=\npage_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 1),
 (2, 'mainmenu', 'Japoweb default', 'japoweb-default', 'index.php?option=com_japoweb&view=old', 'component', 1, 0, 34, 0, 2, 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0),
-(3, 'mainmenu', 'Add Termino', 'add-termino', 'index.php?option=com_japoweb&view=addtermino', 'component', 1, 0, 34, 0, 3, 0, '0000-00-00 00:00:00', 0, 0, 1, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0);
+(3, 'mainmenu', 'Add Termino', 'add-termino', 'index.php?option=com_japoweb&view=addtermino', 'component', 1, 0, 34, 0, 3, 0, '0000-00-00 00:00:00', 0, 0, 1, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0),
+(4, 'mainmenu', 'Crear lista', 'crear-lista', 'index.php?option=com_japoweb&view=getlist', 'component', 1, 0, 34, 0, 4, 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1513,7 +1527,7 @@ CREATE TABLE IF NOT EXISTS `jos_session` (
 --
 
 INSERT INTO `jos_session` (`username`, `time`, `session_id`, `guest`, `userid`, `usertype`, `gid`, `client_id`, `data`) VALUES
-('Pericuelo', '1318444893', 'sm67bbfupkqjqrngl12csuadp0', 0, 65, 'Registered', 18, 0, '__default|a:8:{s:22:"session.client.browser";s:70:"Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1";s:15:"session.counter";i:36;s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"65";s:4:"name";s:14:"Pere Fonolleda";s:8:"username";s:9:"Pericuelo";s:5:"email";s:20:"peterpunkz@gmail.com";s:8:"password";s:65:"0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj";s:14:"password_clear";s:0:"";s:8:"usertype";s:10:"Registered";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"0";s:3:"gid";s:2:"18";s:12:"registerDate";s:19:"2011-10-09 15:36:54";s:13:"lastvisitDate";s:19:"2011-10-12 17:58:18";s:10:"activation";s:0:"";s:6:"params";s:56:"admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n";s:3:"aid";i:1;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:74:"/home/pere/aptanaWorkspace/japoweb/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":5:{s:14:"admin_language";s:0:"";s:8:"language";s:0:"";s:6:"editor";s:0:"";s:8:"helpsite";s:0:"";s:8:"timezone";s:1:"0";}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:19:"session.timer.start";i:1318443324;s:18:"session.timer.last";i:1318444880;s:17:"session.timer.now";i:1318444893;s:13:"session.token";s:32:"e5a6370e706646c32fae33c8b22e1f1f";}');
+('Pericuelo', '1318795249', 'hdqqafp03i5gsghq8tgeeje861', 0, 65, 'Registered', 18, 0, '__default|a:9:{s:22:"session.client.browser";s:70:"Mozilla/5.0 (X11; Linux x86_64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1";s:15:"session.counter";i:179;s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"65";s:4:"name";s:14:"Pere Fonolleda";s:8:"username";s:9:"Pericuelo";s:5:"email";s:20:"peterpunkz@gmail.com";s:8:"password";s:65:"0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj";s:14:"password_clear";s:0:"";s:8:"usertype";s:10:"Registered";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"0";s:3:"gid";s:2:"18";s:12:"registerDate";s:19:"2011-10-09 15:36:54";s:13:"lastvisitDate";s:19:"2011-10-16 11:23:26";s:10:"activation";s:0:"";s:6:"params";s:56:"admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n";s:3:"aid";i:1;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:74:"/home/pere/aptanaWorkspace/japoweb/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":5:{s:14:"admin_language";s:0:"";s:8:"language";s:0:"";s:6:"editor";s:0:"";s:8:"helpsite";s:0:"";s:8:"timezone";s:1:"0";}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"b42f59f4e946a8544ddc77a7dd680598";s:19:"session.timer.start";i:1318786037;s:18:"session.timer.last";i:1318795179;s:17:"session.timer.now";i:1318795249;s:16:"com_mailto.links";a:1:{s:40:"9958a1e05ee12fafa808cbef1e21cc15704a63a1";O:8:"stdClass":2:{s:4:"link";s:87:"http://localhost/japoweb/index.php?option=com_content&view=article&id=1:article-de-test";s:6:"expiry";i:1318787560;}}}');
 
 -- --------------------------------------------------------
 
@@ -1586,10 +1600,10 @@ CREATE TABLE IF NOT EXISTS `jos_users` (
 --
 
 INSERT INTO `jos_users` (`id`, `name`, `username`, `email`, `password`, `usertype`, `block`, `sendEmail`, `gid`, `registerDate`, `lastvisitDate`, `activation`, `params`) VALUES
-(62, 'Administrator', 'admin', 'japoweb@japoweb.com', 'c40042179c3187f3037e60da0cb8914b:7hNtStP4IFb4oPYgAXk8tOkBXmWdPtkH', 'Super Administrator', 0, 1, 25, '2011-10-09 13:36:39', '2011-10-12 17:57:47', '', ''),
+(62, 'Administrator', 'admin', 'japoweb@japoweb.com', 'c40042179c3187f3037e60da0cb8914b:7hNtStP4IFb4oPYgAXk8tOkBXmWdPtkH', 'Super Administrator', 0, 1, 25, '2011-10-09 13:36:39', '2011-10-16 17:51:47', '', ''),
 (63, 'neko', 'neko', 'josexu@gmail.com', '27d49f4bb71144062cad1392748dcf26', 'Registered', 0, 0, 18, '2011-10-09 15:32:48', '0000-00-00 00:00:00', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n'),
 (64, 'iru', 'iru', 'iru.bcn@gmail.com', '27d49f4bb71144062cad1392748dcf26', 'Registered', 0, 0, 18, '2011-10-09 15:33:00', '0000-00-00 00:00:00', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n'),
-(65, 'Pere Fonolleda', 'Pericuelo', 'peterpunkz@gmail.com', '0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj', 'Registered', 0, 0, 18, '2011-10-09 15:36:54', '2011-10-12 18:15:31', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n');
+(65, 'Pere Fonolleda', 'Pericuelo', 'peterpunkz@gmail.com', '0e15996bfb42588fdcf928d43e6dd324:CAEWqLZorLzxuhLXzae3XIEgMUbfEdyj', 'Registered', 0, 0, 18, '2011-10-09 15:36:54', '2011-10-16 19:21:49', '', 'admin_language=\nlanguage=\neditor=\nhelpsite=\ntimezone=0\n\n');
 
 -- --------------------------------------------------------
 
