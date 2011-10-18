@@ -1,5 +1,5 @@
 window.addEvent( 'domready', function() {
-	//VirtualKeyboard.toggle('kana', 'keyboard');
+	VirtualKeyboard.toggle('kana', 'keyboard');
 	textBo = new TextboxList('cat_text_field', {unique: true, plugins: {autocomplete: {
 		minLength: 2,
 		queryRemote: true,
@@ -81,17 +81,28 @@ function obtenerTermino(id){
 }
 
 function cargarTermino(termino, id){
+	limpiarForm();
 	term = JSON.decode(termino);
 
 	$('old').set('value', id);
 	$('kana').set('value',term[0].kana);
-	$('kanji').set('value',term[0].kanji);
+	if (term[0].kanji != null)
+		$('kanji').set('value',term[0].kanji);
 	$('significado').set('value',term[0].significado);
-	$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+term.imagen+'">');
-	textBo.clear();
+	if (term.imagen[0] != null)
+		$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+term.imagen[0].fichero+'">');
 	Array.each(term.categorias, function(cat, index){
 		textBo.add(cat.nombre,cat.id);
 	});	
+}
+
+function limpiarForm(){
+	$('old').set('value', 0);
+	$('kana').set('value','');
+	$('kanji').set('value','');
+	$('significado').set('value','');
+	eliminar_imagen();
+	textBo.clear();	
 }
 
 function select_img(id){
@@ -102,10 +113,10 @@ function select_img(id){
 }
 
 function eliminar_imagen(){
-	$('google_image').set('value','');
-	$('original_image').set('value','');
-	
 	$('selected_image').set('html','Sin Imagen');
+
+	$('google_image').set('value','');
+	$('original_image').set('value','');	
 }
 
 function myValidate(f) {

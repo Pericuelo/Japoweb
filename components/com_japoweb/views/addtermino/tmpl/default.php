@@ -58,8 +58,8 @@ JHTML::_('behavior.formvalidation');
 				onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo $this->termino->kanji; ?>"/>
 		</div>
 		<div>
-			<label class="required" for="significado">Significado:</label>
-			<input type="text" name="significado" id="significado" onblur="buscarImagenesSiNoSeleccionada('significado');" value="<?php echo $this->termino->significado; ?>"/>
+			<label for="significado">Significado:</label>
+			<input class="required" type="text" name="significado" id="significado" onblur="buscarImagenesSiNoSeleccionada('significado');" value="<?php echo $this->termino->significado; ?>"/>
 		</div>
 		<div>
 			<label for="categoria">Categorias:</label>

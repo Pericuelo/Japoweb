@@ -30,29 +30,40 @@ class JapowebController extends JController
     }
 	
 	function save() {
-		$id = JRequest::getVar('id');
-		if($id) {
+		//Comprobamos que se ha enviado el form con javascript tras validar
+		$jAp=& JFactory::getApplication();
+		if ($_POST['check']!=JUtility::getToken()) {
+		   // First verify (by a Javascript error or other methods) that the form has not been submitted without the validation
+		   if ($_POST['check']=='post'){
+		   	//$jAp->enqueueMessage('Please check all the fields of the form, aub.<br/>
+			//If your browser blocks Javascript, then this form will never be successful. This is a security measure.','error');
+		   
+		   	// If the check still isn't a valid token, do nothing. This might be a spoof attack or other invalid form submission
+			JError::raiseWarning( 100, 'Este formulario necesita Javascript para funcionar.' );
+			JFactory::getApplication()->redirect('index.php?option=com_japoweb&view=addtermino&Itemid=3');
+			}
+		}
+		//Es update?
+		$model = $this->getModel('addtermino');
+
+		$kana = JRequest::getVar('kana');
+		$kanji = JRequest::getVar('kanji');
+		$significado = JRequest::getVar('significado');
+		$categorias = JRequest::getVar('categorias');
+		$categorias_nombres = JRequest::getVar('categorias_nombres');
+		$google_image = JRequest::getVar('google_image');
+		$original_image = JRequest::getVar('original_image');
+		$idUser = JRequest::getVar('id_user');
+
+		$id = JRequest::getVar('old');
+		if($id != 0) {
 			// Update
-			$model = $this->getModel('addtermino');
+			$termino = $model->getTermino($id);
+			
+			$model->updateTermino($kana, $kanji, $significado, $categorias, $categorias_nombres, $google_image, $original_image, $idUser, $termino);
 		} else {
-			$model = $this->getModel('addtermino');
-			//Es update?
-			$id = JRequest::getVar('old');
-			if ($id != 0) $termino = $model->getTermino(JRequest::getVar('id'));
-			// Create
-			
-			
-			// kana, kanji, significado, categorias, id_user
-			$kana = JRequest::getVar('kana');
-			$kanji = JRequest::getVar('kanji');
-			$significado = JRequest::getVar('significado');
-			$categorias = JRequest::getVar('categorias');
-			$categorias_nombres = JRequest::getVar('categorias_nombres');
-			$google_image = JRequest::getVar('google_image');
-			$original_image = JRequest::getVar('original_image');
-			$idUser = JRequest::getVar('id_user');
-			
-			$model->createTermino($kana, $kanji, $significado, $categorias, $categorias_nombres, $google_image, $original_image, $idUser, $termino);
+			// Create			
+			$model->createTermino($kana, $kanji, $significado, $categorias, $categorias_nombres, $google_image, $original_image, $idUser);
 		}
 	}
  
