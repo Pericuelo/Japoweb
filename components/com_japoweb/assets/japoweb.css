@@ -32,6 +32,10 @@ label, .label { width: 120px; float: left; }
 #limpiar, #buscar_imagenes, #eliminar_imagen { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 4px 8px }
 #keyboard {position: fixed; bottom: 0; left: 0}
 
+/** GET LIST **/
+.checkbox_label { float: none; width: auto; cursor: pointer; }
+#format_preview { margin-left: 120px;  }
+
 /** ADD TERMINO POPUP TERMINOS REPETIDOS **/
 .terminos_parecidos_popup td:hover { background-color: #FF5500;}
 .terminos_parecidos_popup img { vertical-align: middle;}
