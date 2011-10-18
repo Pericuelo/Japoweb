@@ -34,4 +34,5 @@ label, .label { width: 120px; float: left; }
 
 /** ADD TERMINO POPUP TERMINOS REPETIDOS **/
 .terminos_parecidos_popup td:hover { background-color: #FF5500;}
+.terminos_parecidos_popup td { padding: 5px; }
 .terminos_parecidos_popup img { vertical-align: middle;}

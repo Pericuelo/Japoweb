@@ -127,8 +127,16 @@ var TextboxList = new Class({
 		return new TextboxListBit[klass.capitalize()](value, this, $merge(this.options.bitsOptions[klass], options));		
 	},
 	
-	uniqueValue: function(value){
-		return $chk(value[0]) ? value[0] : (this.options.uniqueInsensitive ? value[1].toLowerCase() : value[1]);
+	clear: function() { 
+		this.list.getChildren().map(function(el){ 
+			var bit = this.getBit(el);
+			if (bit.is('editable')) return null;
+			bit.remove();
+		}, this);
+		this.index.empty(); 
+	},
+	 
+	uniqueValue: function(value){ return $chk(value[0]) ? value[0] : (this.options.uniqueInsensitive ? value[1].toLowerCase() : value[1]);
 	},
 	
 	onFocus: function(bit){

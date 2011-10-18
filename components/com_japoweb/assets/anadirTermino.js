@@ -63,9 +63,11 @@ function buscarTerminos(kana) {
 }
 
 function mostrarPopupTerminos(response){
-	options = {size: {x: 300, y: 250}};
-	SqueezeBox.initialize(options);
-	SqueezeBox.setContent('string',response);	
+	if(response != ""){
+		options = {size: {x: 300, y: 250}};
+		SqueezeBox.initialize(options);
+		SqueezeBox.setContent('string',response);			
+	}
 }
 
 function obtenerTermino(id){
@@ -74,19 +76,19 @@ function obtenerTermino(id){
 		method: 'get',
 		url: 'index.php?option=com_japoweb&view=addtermino&format=termino&id='+id,
 	    data: { 'do' : '1' },
-	    onComplete: function(response) { cargarTermino(response); }
+	    onComplete: function(response) { cargarTermino(response, id); }
 	}).send();
 }
 
-function cargarTermino(termino){
-	$('google_imgs').set('html',termino);
+function cargarTermino(termino, id){
 	term = JSON.decode(termino);
 
-	$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+term.imagen+'">');
+	$('old').set('value', id);
 	$('kana').set('value',term[0].kana);
 	$('kanji').set('value',term[0].kanji);
 	$('significado').set('value',term[0].significado);
-	$('cat_text_field').
+	$('selected_image').set('html','<img src="images/img_vocabulario/peques/'+term.imagen+'">');
+	textBo.clear();
 	Array.each(term.categorias, function(cat, index){
 		textBo.add(cat.nombre,cat.id);
 	});	
@@ -104,4 +106,24 @@ function eliminar_imagen(){
 	$('original_image').set('value','');
 	
 	$('selected_image').set('html','Sin Imagen');
+}
+
+function myValidate(f) {
+	actualizarCategorias();
+   	if (document.formvalidator.isValid(f)) {
+    	f.check.value='<?php echo JUtility::getToken(); ?>'; //send token
+		return true; 
+   	}
+   	else {
+      /*
+      var msg = 'Some values are not acceptable.  Please retry.';
+ 
+      //Example on how to test specific fields
+      //if($('email').hasClass('invalid')){msg += '\n\n\t* Invalid E-Mail Address';}
+ 
+      alert(msg);
+      */
+   	}
+	window.scroll(0,0);
+   	return false;
 }

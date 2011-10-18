@@ -28,6 +28,9 @@ JHTML::stylesheet($filenameCss, $path);
 
 //Modal windows
 JHTML::_('behavior.modal'); 
+
+//Validation
+JHTML::_('behavior.formvalidation');
 ?>
 
 <?php
@@ -42,11 +45,11 @@ JHTML::_('behavior.modal');
 <div class="componentbody">
 			<button onclick="VirtualKeyboard.toggle('kana', 'keyboard');">Teclado Japonés</button>
 				 	<div id="keyboard"></div>
-	<form method="post" enctype="multipart/form-data" action="<?php echo JRoute::_('index.php');?>">
+	<form id="WV-form" method="post" enctype="multipart/form-data"  class="form-validate" onSubmit="return myValidate(this);">
 		<div>
 			<label for="kana">Kana:</label>
-			<input class="keyboardInput" type="text" name="kana" id="kana" onblur="buscarImagenesSiNoSeleccionada('kana');"
-				 onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo $this->termino->kana; ?>"/>
+			<input class="required keyboardInput" type="text" name="kana" id="kana" onblur="buscarTerminos($('kana').value);"
+				 onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo JRequest::getVar('kana', '', 'post'); ?>"/>
 
 		</div>
 		<div>
@@ -55,12 +58,12 @@ JHTML::_('behavior.modal');
 				onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo $this->termino->kanji; ?>"/>
 		</div>
 		<div>
-			<label for="significado">Significado:</label>
+			<label class="required" for="significado">Significado:</label>
 			<input type="text" name="significado" id="significado" onblur="buscarImagenesSiNoSeleccionada('significado');" value="<?php echo $this->termino->significado; ?>"/>
 		</div>
 		<div>
 			<label for="categoria">Categorias:</label>
-			<input id="cat_text_field" type="text" value="<?php echo $this->termino->categorias; ?>"/><span id="limpiar" onclick="clearCategorias()">Limpiar</span>
+			<input id="cat_text_field" type="text" value="<?php echo $this->termino->categorias; ?>"/><span id="limpiar" onclick="textBo.clear()">Limpiar</span>
 			<div id="cat_selector">
 				<?php foreach($this->categorias as $categoria): ?>
 					<div class="categoria"><span id="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?><span></div>
@@ -80,12 +83,13 @@ JHTML::_('behavior.modal');
 		<div>
 			<label for="buscar_imagenes">Buscar Imágenes:</label>
 			<input id="image_query" type="text" value=""/>
-			<span id="buscar_imagenes" onclick="buscarTerminos('くるま'); buscarImagenes('image_query', 20);">Buscar Imágenes</span>
+			<span id="buscar_imagenes" onclick="buscarImagenes('image_query', 20);">Buscar Imágenes</span>
 			<span id="buscar_imagenes" onclick="buscarImagenes('image_query',100);">Buscar Muuuchas Imágenes</span>
 			<div id="google_imgs"></div>
 		</div>
 		<div>
 			<input type="submit" name="submit" value="Guardar"/>
+			<input type="hidden" id="old" name="old" value="0"/>
 			<input type="hidden" name="option" value="com_japoweb"/>
 			<input type="hidden" name="task" value="save"/>
 			<input type="hidden" name="view" value="addtermino"/>

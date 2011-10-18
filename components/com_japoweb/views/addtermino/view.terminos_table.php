@@ -22,14 +22,16 @@ class JapowebViewAddtermino extends JView {
 		
 		if(sizeof($terminos['terminos']) > 0){
 			echo '<table class="terminos_parecidos_popup">';		
+			echo '<tr><td>¿Tu palabra es alguna de estas?</tr></td>';
 			foreach($terminos['terminos'] as $termino) {
 				echo '<tr><td onclick="obtenerTermino('.$termino->id.')">';
-				echo '<img src="images/img_vocabulario/peques/'.$terminos['imagenes'][$termino->id].'">';
-				echo $termino->kana.'<br>';
-				echo $termino->kanji.'<br>';
+				$imagen = ($terminos['imagenes'][$termino->id])?$terminos['imagenes'][$termino->id]:'NoPhoto.jpg';
+				echo '<img src="images/img_vocabulario/peques/'.$imagen.'"> ';
+				echo $termino->kana;
+				if($termino->kanji) echo '(<strong>'.$termino->kanji.'</strong>)<br>';
 				echo '</td></tr>';
 			}
-			echo '<tr><td>No es ninguna de estas...</td></tr>';
+			echo '<tr><td onclick="SqueezeBox.close();">No es ninguna de estas, dejame continuar introduciendola.</td></tr>';
 			echo '</table>';
 		}
     }
