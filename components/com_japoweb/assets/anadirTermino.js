@@ -1,5 +1,11 @@
 window.addEvent( 'domready', function() {
+	var langs = [];
+	langs.push("JP");
+	VirtualKeyboard.setVisibleLayoutCodes(langs);
+	
 	VirtualKeyboard.toggle('kana', 'keyboard');
+	
+	
 	textBo = new TextboxList('cat_text_field', {unique: true, plugins: {autocomplete: {
 		minLength: 2,
 		queryRemote: true,
