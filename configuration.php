@@ -12,10 +12,10 @@ var $debug = '0';
 var $debug_lang = '0';
 /* Database Settings */
 var $dbtype = 'mysql';
-var $host = 'localhost';
-var $user = 'root';
-var $password = 'my12xa';
-var $db = 'japoweb';
+var $host = '70.39.233.47';
+var $user = 'eoijisho_web';
+var $password = 'myAkira21';
+var $db = 'eoijisho_main';
 var $dbprefix = 'jos_';
 /* Server Settings */
 var $live_site = '';

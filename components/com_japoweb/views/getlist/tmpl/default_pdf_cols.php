@@ -27,7 +27,11 @@ defined('_JEXEC') or die('Restricted access'); ?>
 		<?php $terminoLeft = $this->terminos[$i]; $terminoRight = $this->terminos[$i+$termsCol]; ?>
 		<tr>
 			<?php if($img): ?>
-				<td><span><img src="<?php echo $terminoLeft->img ?>"/></span></td>
+				<?php if(is_file("images/img_vocabulario/peques/".$terminoLeft->img)): ?>
+					<td><span><img src="images/img_vocabulario/peques/<?php echo $terminoLeft->img ?>"/></span></td>
+				<?php else: ?>
+					<td></td>
+				<?php endif; ?>
 			<?php endif; ?>
 			<?php if($kana): ?>
 				<td><span><?php echo $terminoLeft->kana ?></span></td>
@@ -40,7 +44,11 @@ defined('_JEXEC') or die('Restricted access'); ?>
 			<?php endif; ?>
 			
 			<?php if($img): ?>
-				<td><span><img src="<?php echo $terminoRight->img ?>"/></span></td>
+				<?php if(is_file("images/img_vocabulario/peques/".$terminoRight->img)): ?>
+					<td><span><img src="images/img_vocabulario/peques/<?php echo $terminoRight->img ?>"/></span></td>
+				<?php else: ?>
+					<td></td>
+				<?php endif; ?>
 			<?php endif; ?>
 			<?php if($kana): ?>
 				<td><span><?php echo $terminoRight->kana ?></span></td>
