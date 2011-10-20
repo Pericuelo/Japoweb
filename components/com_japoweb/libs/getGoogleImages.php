@@ -27,7 +27,7 @@ function get_web_page( $url )
         CURLOPT_RETURNTRANSFER => true,     // return web page
         CURLOPT_HEADER         => false,    // don't return headers
         CURLOPT_FOLLOWLOCATION => true,     // follow redirects
-        CURLOPT_ENCODING       => "",       // handle all encodings
+        CURLOPT_ENCODING       => "UTF-8",       // handle all encodings
         CURLOPT_USERAGENT      => "Neko", // who am i
         CURLOPT_AUTOREFERER    => true,     // set referer on redirect
         CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect

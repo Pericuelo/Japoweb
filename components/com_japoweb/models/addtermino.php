@@ -38,7 +38,7 @@ class JapowebModelAddtermino extends JModel {
 	
 	function getTermino($id){
 		$db =& JFactory::getDBO();
-		$db->setQuery("SELECT id, kana, kanji, significado FROM #__jw_termino WHERE id = '$id'");		
+		$db->setQuery("SELECT id, kana, kanji, significado FROM #__jw_termino WHERE id = $id");		
 		$termino = $db->loadObjectList();
 		//Categorias
 		$db->setQuery("SELECT c.id, c.nombre FROM #__jw_termino t, #__jw_categoria c, #__jw_termino_categoria tc 
@@ -75,7 +75,7 @@ class JapowebModelAddtermino extends JModel {
 			//$ok = salvar_http_a_local($google_image, 'images/img_vocabulario/peques/'.$img_name.'.jpg');
 			$ok_imagen = salvar_http_a_local($google_image, 'images/img_vocabulario/peques/'.$img_name.'.jpg');
 			//Aquí podriamos descargar la imagen original
-			//salvar_http_a_local($original_image, 'images/img_vocabulario/grandes/'.$img_name.'.jpg');
+			salvar_http_a_local($original_image, 'images/img_vocabulario/grandes/'.$img_name.'.jpg');
 			if(!$ok_imagen){
 				JError::raiseWarning( 100, 'img_vocabulario/peques/'.$img_name.'.jpg '+ $google_image);
 				JFactory::getApplication()->redirect('index.php?option=com_japoweb&view=addtermino&Itemid=3');
@@ -136,7 +136,7 @@ class JapowebModelAddtermino extends JModel {
 				$success = $db->query();
 				if (!success){
 					unlink('images/img_vocabulario/peques/'.$img_name.'.jpg');
-					//unlink('images/img_vocabulario/grandes/'.$img_name.'.jpg');
+					unlink('images/img_vocabulario/grandes/'.$img_name.'.jpg');
 				} 
 			}
 			//Insertamos categorías
@@ -189,7 +189,7 @@ class JapowebModelAddtermino extends JModel {
 			//$ok = salvar_http_a_local($google_image, 'images/img_vocabulario/peques/'.$img_name.'.jpg');
 			$ok_imagen = salvar_http_a_local($google_image, 'images/img_vocabulario/peques/'.$img_name.'.jpg');
 			//Aquí podriamos descargar la imagen original
-			//salvar_http_a_local($original_image, 'images/img_vocabulario/grandes/'.$img_name.'.jpg');
+			salvar_http_a_local($original_image, 'images/img_vocabulario/grandes/'.$img_name.'.jpg');
 			if(!$ok_imagen){
 				JError::raiseWarning( 100, 'img_vocabulario/peques/'.$img_name.'.jpg '+ $google_image);
 				JFactory::getApplication()->redirect('index.php?option=com_japoweb&view=addtermino&Itemid=3');
@@ -249,7 +249,7 @@ class JapowebModelAddtermino extends JModel {
 				$success = $db->query();
 				if (!success){
 					unlink('images/img_vocabulario/peques/'.$img_name.'.jpg');
-					//unlink('images/img_vocabulario/grandes/'.$img_name.'.jpg');
+					unlink('images/img_vocabulario/grandes/'.$img_name.'.jpg');
 				} 
 			}
 			//Insertamos categorías
@@ -278,7 +278,7 @@ class JapowebModelAddtermino extends JModel {
 					JFactory::getApplication()->redirect('index.php?option=com_japoweb&view=addtermino&Itemid=3');
 				}
 			}
-			$query = "INSERT INTO #__jw_modificacion (user_id, termino_id, fecha) VALUES ($idUser, ".$termino[0]->id.", now();)";
+			$query = "INSERT INTO #__jw_modificacion (user_id, termino_id, fecha) VALUES ($idUser, ".$termino[0]->id.", now())";
 			$db->setQuery($query);
 			$success = $db->query();
 			JFactory::getApplication()->enqueueMessage( 'El termino '.$kana.' se ha actualizado correctamente' );
