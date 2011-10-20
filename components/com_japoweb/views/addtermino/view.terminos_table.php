@@ -27,8 +27,11 @@ class JapowebViewAddtermino extends JView {
 				echo '<tr><td onclick="obtenerTermino('.$termino->id.')">';
 				$imagen = ($terminos['imagenes'][$termino->id])?$terminos['imagenes'][$termino->id]:'NoPhoto.jpg';
 				echo '<img src="images/img_vocabulario/peques/'.$imagen.'"> ';
+				echo '<span>';
 				echo $termino->kana;
-				if($termino->kanji) echo '(<strong>'.$termino->kanji.'</strong>)<br>';
+				if($termino->kanji) echo '(<strong>'.$termino->kanji.'</strong>)';
+				echo '<br>'.$termino->significado;
+				echo '</span>';
 				echo '</td></tr>';
 			}
 			echo '<tr><td onclick="SqueezeBox.close();">No es ninguna de estas, dejame continuar introduciendola.</td></tr>';
