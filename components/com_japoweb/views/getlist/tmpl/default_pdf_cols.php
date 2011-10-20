@@ -27,11 +27,11 @@ defined('_JEXEC') or die('Restricted access'); ?>
 		<?php $terminoLeft = $this->terminos[$i]; $terminoRight = $this->terminos[$i+$termsCol]; ?>
 		<tr>
 			<?php if($img): ?>
+				<td class="image">
 				<?php if(is_file("images/img_vocabulario/peques/".$terminoLeft->img)): ?>
-					<td><span><img src="images/img_vocabulario/peques/<?php echo $terminoLeft->img ?>"/></span></td>
-				<?php else: ?>
-					<td></td>
+					<span><img src="images/img_vocabulario/peques/<?php echo $terminoLeft->img ?>"/></span>
 				<?php endif; ?>
+				</td>
 			<?php endif; ?>
 			<?php if($kana): ?>
 				<td><span><?php echo $terminoLeft->kana ?></span></td>

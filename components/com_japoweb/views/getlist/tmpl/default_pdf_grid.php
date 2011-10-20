@@ -25,9 +25,11 @@ defined('_JEXEC') or die('Restricted access'); ?>
 		<?php endif; ?>
 		<td><span>
 			<?php if($img): ?>
+				<div class="image">
 				<?php if(is_file("images/img_vocabulario/peques/".$termino->img)): ?>
-					<img src="images/img_vocabulario/peques/<?php echo $termino->img ?>"/><br/>
+					<img src="images/img_vocabulario/peques/<?php echo $termino->img ?>"/>
 				<?php endif; ?>
+				</div>
 			<?php endif; ?>
 			<?php if($kana): ?>
 				<?php echo $termino->kana ?><br/>
