@@ -38,7 +38,7 @@ class JapowebModelGetlist extends JModel {
 			}
 		}
 		
-		$query .= ")";
+		$query .= ") GROUP BY t.id";
 		
 		$db->setQuery($query);
 		
