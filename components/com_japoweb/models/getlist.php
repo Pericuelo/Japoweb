@@ -22,8 +22,9 @@ class JapowebModelGetlist extends JModel {
 			
 		$db =& JFactory::getDBO();
 		
-		$query = "SELECT DISTINCT(id), kanji, kana, significado FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON tc.id_termino = t.id ";
-		$query .= " WHERE tc.id_categoria IN (";
+		$query = "SELECT DISTINCT(t.id), kanji, kana, significado, i.fichero AS img FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON tc.id_termino = t.id ";
+		$query .= "LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino ";
+		$query .= "WHERE tc.id_categoria IN (";
 		
 		$first = true;
 		
