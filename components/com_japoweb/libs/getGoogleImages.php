@@ -12,7 +12,7 @@ http://images.google.com/images
 		isch		1 ???
 		ic			color | gray (Opcional)
 		isz			l | m | i (Opcional)
-		itp			lineart | photo | face | (Opcional)
+		itp			lineart | photo | face | clipart | (Opcional)
 		islt:qsvga	(Mayor de 400*300)
 	&q=perro
 	&aq=f
@@ -68,7 +68,7 @@ function getGoogleImg($q, $min_imgs) {
 	$result = array();
 	$img_start_num = 0;
 	while($img_start_num < $min_imgs){
-		$url = "http://images.google.com/images?hl=en&tbs=isch:1,itp:lineart,ic:gray&source=lnt&sa=X&start=".$img_start_num.$q;
+		$url = "http://images.google.com/images?hl=en&tbs=isch:1,itp:clipart,ic:gray&source=lnt&sa=X&start=".$img_start_num.$q;
 		//$url = "http://www.google.com/images?hl=es&source=imghp&gbv=2&aq=f&aqi=&aql=&oq=&start=".$img_start_num.$q;
 		//$url = "http://www.google.com/images?hl=es&source=imghp&gbv=2&tbs=isch%3A1%2Citp%3Alineart&sa=1&aq=f&aqi=&aql=&oq=".$q;
 		$web_page = get_web_page($url);

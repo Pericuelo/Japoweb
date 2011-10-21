@@ -48,8 +48,9 @@ JHTML::_('behavior.formvalidation');
 	<form id="WV-form" method="post" enctype="multipart/form-data"  class="form-validate" onSubmit="return myValidate(this);">
 		<div>
 			<label for="kana">Kana:</label>
-			<input class="required keyboardInput" type="text" name="kana" id="kana" onblur="buscarTerminos($('kana').value);"
+			<input class="required keyboardInput" type="text" name="kana" id="kana" onblur="buscarTerminos($('kana').value); kana2romaji();"
 				 onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo JRequest::getVar('kana', '', 'post'); ?>"/>
+			<input type="text" name="romaji" id="romaji" disabled="true">
 
 		</div>
 		<div>
