@@ -10,7 +10,7 @@ class JapowebModelGetlist extends JModel {
 		
 	function getCategorias() {
 		$db =& JFactory::getDBO();
-		$db->setQuery("SELECT id, nombre FROM #__jw_categoria");
+		$db->setQuery("SELECT id, nombre FROM #__jw_categoria ORDER BY num_palabras DESC");
 		
 		return $db->loadObjectList();
 	}
