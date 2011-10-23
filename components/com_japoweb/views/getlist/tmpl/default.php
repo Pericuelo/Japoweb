@@ -45,6 +45,7 @@ JHTML::stylesheet($filenameCss, $path);
 		<div>
 			<input type="checkbox" name="info" value="img"> Image
 			<input type="checkbox" name="info" value="kana"> Kana
+			<input type="checkbox" name="info" value="romaji"> Romaji
 			<input type="checkbox" name="info" value="kanji"> Kanji
 			<input type="checkbox" name="info" value="sign"> Significado
 		</div>

@@ -37,6 +37,9 @@ defined('_JEXEC') or die('Restricted access'); ?>
 			<?php if($kanji): ?>
 				<?php echo $termino->kanji ?><br/>
 			<?php endif; ?>
+			<?php if($this->romaji): ?>
+				<div class="romaji_word" id="<?php echo $count; ?>"><?php echo $termino->kana ?></div>
+			<?php endif; ?>
 			<?php if($sign): ?>
 				<?php echo $termino->significado ?><br/>
 			<?php endif; ?>
