@@ -27,6 +27,18 @@ JHTML::stylesheet($filenameCss, $path);
 				</div>
 			<?php endforeach; ?>
 		</div>
+		<div class="right_label">
+			<div>
+				<input checked="checked" type="radio" name="catJoin" value="union" />
+				Todos los terminos de todas las categorias seleccionadas:
+				<img src="images/union.png" alt="union" />
+			</div>
+			<div>
+				<input type="radio" name="catJoin" value="inters" />
+				Solo los terminos que coinciden con todas las categorias seleccionadas:
+				<img src="images/intersection.png" alt="interseccion" />
+			</div>
+		</div>
 	</div>
 	
 	<div>
@@ -35,7 +47,7 @@ JHTML::stylesheet($filenameCss, $path);
 			<input checked="checked" type="radio" name="formato" value="cols"> Columnas
 			<input type="radio" name="formato" value="grid"> Cuadricula
 			<p style="margin-left: 120px; ">Ejemplo de formato: </p>
-			<img id="format_preview" src="<?php echo JURI::base()."components/com_japoweb/assets/img/cols.png"; ?>"/>
+			<img class="right_label" id="format_preview" src="<?php echo JURI::base()."components/com_japoweb/assets/img/cols.png"; ?>"/>
 		</div>
 		<div class="clr"></div>
 	</div>
