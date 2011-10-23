@@ -36,7 +36,9 @@ function addFormat(anchor) {
 	   info += item.value+"|";
 	});
 	
-	anchor.href += categorias+format+info+catJoin;
+	href = anchor.href+categorias+format+info+catJoin;
 	
-	return true;
+	window.open(href,'target=_blank');
+	
+	return false;
 }

@@ -64,6 +64,6 @@ JHTML::stylesheet($filenameCss, $path);
 	</div>
 	
 	<div>
-		<a onclick="addFormat(this)" target="_blank" href="index.php?option=com_japoweb&view=getlist&format=raw">Haz clic aquí para generar la lista</span>
+		<a onclick="return addFormat(this);" href="index.php?option=com_japoweb&view=getlist&format=raw">Haz clic aquí para generar la lista</span>
 	</div>
 </div>
