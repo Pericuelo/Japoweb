@@ -1,5 +1,4 @@
 <?php
- 
 // No direct access
  
 defined('_JEXEC') or die('Restricted access'); 
@@ -42,7 +41,7 @@ JHTML::_('behavior.formvalidation');
 ?>
 
 
-<h1 class="componentheading"><?php echo JText::_('Añadir término'); ?></h1>
+<? /* <h1 class="componentheading"><?php echo JText::_('Añadir término'); ?></h1> */ ?>
 <div class="componentbody">
 			<button onclick="VirtualKeyboard.toggle('kana', 'keyboard');">Teclado Japonés</button>
 				 	<div id="keyboard"></div>

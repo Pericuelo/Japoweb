@@ -1,8 +1,7 @@
 window.addEvent( 'domready', function() {
 	var langs = [];
 	langs.push("JP");
-	VirtualKeyboard.setVisibleLayoutCodes(langs);
-	
+	VirtualKeyboard.setVisibleLayoutCodes(langs);	
 	VirtualKeyboard.toggle('kana', 'keyboard');
 	
 	
@@ -18,7 +17,14 @@ window.addEvent( 'domready', function() {
 			var currentSpan = span[0];
 			textBo.add(currentSpan.get('text'),currentSpan.id);
 		});
-	});		
+	});
+	
+  	$('significado').addEvent('keypress',function(e) {
+    	if(e.key == 'enter') { e.stop(); }
+  	});
+  	$('image_query').addEvent('keypress',function(e) {
+    	if(e.key == 'enter') { buscarImagenes('image_query', 20); }
+  	});
 });
 
 function clearCategorias() {

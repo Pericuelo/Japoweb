@@ -9,3 +9,5 @@
 .svn
 _svn
 svn-commit*.tmp
+configuration.php
+configuration.php

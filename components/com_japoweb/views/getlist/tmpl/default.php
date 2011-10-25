@@ -14,7 +14,7 @@ JHTML::script($filenameJs, $path,  true);
 JHTML::stylesheet($filenameCss, $path);
 ?>
 
-<h1 class="componentheading"><?php echo JText::_('Crear lista'); ?></h1>
+<? /* <h1 class="componentheading"><?php echo JText::_('Crear lista'); ?></h1> */ ?>
 <div class="componentbody">
 	<!-- Haremos llamada via Ajax y devolveremos directo el pdf --> 
 	<div>
