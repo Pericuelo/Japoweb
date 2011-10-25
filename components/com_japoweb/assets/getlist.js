@@ -18,6 +18,12 @@ function addFormat(anchor) {
 	   categorias += item.value+"|";
 	});
 	
+	var catJoin = "&catJoin=";
+	$$("input[name=catJoin]:checked").each(function(item, i) {
+	   // Id categoria = item.value
+	   catJoin += item.value+"|";
+	});
+	
 	var format = '&formato=';
 	$$("input[name=formato]:checked").each(function(item, i) {
 	   // Id categoria = item.value
@@ -30,7 +36,9 @@ function addFormat(anchor) {
 	   info += item.value+"|";
 	});
 	
-	anchor.href += categorias+format+info;
+	href = anchor.href+categorias+format+info+catJoin;
 	
-	return true;
+	window.open(href,'target=_blank');
+	
+	return false;
 }

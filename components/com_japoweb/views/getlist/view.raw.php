@@ -21,7 +21,10 @@ class JapowebViewGetlist extends JView {
 		$catString = JRequest::getVar('categorias');
 		$catArray = explode("|", $catString);
 		
-		$terminos = $model->getTerminosByCategorias($catArray);
+		// Si las categorias deben ser union o intersección: "union", "inters"
+		$catJoin = JRequest::getVar('catJoin');
+		
+		$terminos = $model->getTerminosByCategorias($catArray,$catJoin);
 		$this->assignRef('terminos',$terminos);
 		
 		// El formato llegara en un string, que será "cols" o "grid"

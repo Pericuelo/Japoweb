@@ -9,5 +9,9 @@
 .svn
 _svn
 svn-commit*.tmp
+<<<<<<< HEAD
 configuration.php
+=======
+cache/
+>>>>>>> 1abe0bcc31c1e82d0566411e25a406c2cb1375d0
 configuration.php

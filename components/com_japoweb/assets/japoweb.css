@@ -34,7 +34,8 @@ label, .label { width: 120px; float: left; }
 
 /** GET LIST **/
 .checkbox_label { float: none; width: auto; cursor: pointer; }
-#format_preview { margin-left: 120px;  }
+.right_label { margin-left: 120px; }
+/*#format_preview { margin-left: 120px;  }*/
 
 /** ADD TERMINO POPUP TERMINOS REPETIDOS **/
 .terminos_parecidos_popup td:hover { background-color: #FF5500;}
