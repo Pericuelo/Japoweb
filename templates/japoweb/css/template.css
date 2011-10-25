@@ -44,9 +44,9 @@ img { border: 0 none; }
 	margin-bottom: 1px;
 }
 
-div.center {
+/*div.center {
   text-align: center;
-}
+}*/
 
 div#wrapper {
 	margin-left: auto;
@@ -86,7 +86,7 @@ div#logo {
 	float: left;
 	width: 298px;
 	height: 75px;
-	background: url(../images/mw_joomla_logo.png) 0 0 no-repeat;
+	/*background: url(../images/mw_joomla_logo.png) 0 0 no-repeat;*/
 	margin-left: 30px;
 	margin-top: 25px;
 }
@@ -99,9 +99,8 @@ div#newsflash {
 }
 
 div#tabarea {
-	background: #f7f7f7 url(../images/mw_header_b.png) 0 0 repeat-x;
+	/*background: #f7f7f7 url(../images/mw_header_b.png) 0 0 repeat-x;*/
 	margin: 0 11px;
-
 }
 
 div#tabarea_l {
@@ -179,9 +178,9 @@ form#searchForm td {
 	width: auto;
 }
 
-#whitebox div {
+/*#whitebox div {
 	text-align: left;
-}
+}*/
 
 #whitebox_t {
 	background: #fff url(../images/mw_content_t.png) 0 0 repeat-x;
@@ -803,4 +802,8 @@ td.key {
 
 #component-contact table td {
 	padding: 2px 0;
+}
+
+.top {
+	float: right; 
 }

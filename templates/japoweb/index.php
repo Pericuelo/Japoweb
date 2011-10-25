@@ -39,7 +39,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				<div id="header_l">
 					<div id="header_r">
 						<div id="logo"></div>
-						<jdoc:include type="modules" name="top" />
+						<div class="top">
+							<jdoc:include type="modules" name="top" />
+						</div>
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,9 @@ div#wrapper_r {
 }
 
 div#header {
-	background: url(../images/red/mw_header_t.png) 0 0 repeat-x;
+	background: url(../images/red/mw_header_t.jpg) 0 0 no-repeat;
+	padding-bottom: 14px;
+	margin-bottom: -14px;
 }
 
 div#header_l {
