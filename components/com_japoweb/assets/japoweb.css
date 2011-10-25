@@ -30,7 +30,7 @@ label, .label { width: 120px; float: left; }
 #google_imgs { margin-left: 120px; height: 350px; width: 620px; overflow-y: scroll; border: 1px solid #cccccc; }
 #selected_image { text-align: center; vertical-align: middle; margin-left: 120px; height: 150px; width: 150px; border: 1px solid #cccccc; }
 #limpiar, #buscar_imagenes, #eliminar_imagen { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 4px 8px }
-#keyboard {position: fixed; bottom: 0; left: 0}
+#keyboard {position: fixed; bottom: 0; right: 0}
 
 /** GET LIST **/
 .checkbox_label { float: none; width: auto; cursor: pointer; }
