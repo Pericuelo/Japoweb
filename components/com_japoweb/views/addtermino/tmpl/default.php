@@ -42,13 +42,23 @@ JHTML::_('behavior.formvalidation');
 
 
 <? /* <h1 class="componentheading"><?php echo JText::_('Añadir término'); ?></h1> */ ?>
+<div id="info_message" class="invisible">
+	<dl id="system-message">
+	<dt class="message">Message</dt>
+	<dd class="message message fade">
+		<ul>
+			<li><span><span  id="info_message_text"></span> <span id="cancelar_modificacion" onclick="limpiarForm()">Dejala como está. No quiero modificar esta palábra</span></li>
+		</ul>
+	</dd>
+	</dl>
+</div>
 <div class="componentbody">
-			<button onclick="VirtualKeyboard.toggle('kana', 'keyboard');">Teclado Japonés</button>
-				 	<div id="keyboard"></div>
+	<? /* <p><button onclick="VirtualKeyboard.toggle('kana', 'keyboard');">Teclado Japonés</button></p> */ ?>
+	<div id="keyboard"></div>
 	<form id="WV-form" method="post" enctype="multipart/form-data"  class="form-validate" onSubmit="return myValidate(this);">
 		<div>
 			<label for="kana">Kana:</label>
-			<input class="required keyboardInput" type="text" name="kana" id="kana" onblur="buscarTerminos($('kana').value); kana2romaji('kana','romaji',false);"
+			<input class="required keyboardInput" type="text" name="kana" id="kana" onchange="" onblur="buscarTerminos($('kana').value); kana2romaji('kana','romaji',false);"
 				 onfocus="VirtualKeyboard.attachInput(this)" value="<?php echo JRequest::getVar('kana', '', 'post'); ?>"/>
 			<input type="text" name="romaji" id="romaji" disabled="true">
 
@@ -82,14 +92,16 @@ JHTML::_('behavior.formvalidation');
 			<input type="hidden" name="original_image" id="original_image" value=""/>
 		</div>
 		<div>
-			<label for="buscar_imagenes">Buscar Imágenes:</label>
-			<input id="image_query" type="text" value=""/>
-			<span id="buscar_imagenes" onclick="buscarImagenes('image_query', 20);">Buscar Imágenes</span>
-			<span id="buscar_imagenes" onclick="buscarImagenes('image_query',100);">Buscar Muuuchas Imágenes</span>
+			<div>
+				<label for="buscar_imagenes">Buscar Imágenes:</label>
+				<input id="image_query" type="text" value=""/>
+				<span id="buscar_imagenes" onclick="buscarImagenes('image_query', 20);">Buscar Imágenes</span>
+				<span id="buscar_imagenes" onclick="buscarImagenes('image_query',100);">Buscar Muuuchas Imágenes</span>
+			</div>
 			<div id="google_imgs"></div>
 		</div>
 		<div>
-			<input type="submit" name="submit" value="Guardar"/>
+			<input id="submit" type="submit" name="submit" value="Guardar"/>
 			<input type="hidden" id="old" name="old" value="0"/>
 			<input type="hidden" name="option" value="com_japoweb"/>
 			<input type="hidden" name="task" value="save"/>

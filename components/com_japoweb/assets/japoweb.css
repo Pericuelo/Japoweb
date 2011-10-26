@@ -22,15 +22,23 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 .vocabulario_significado { float:left; font-weight:bold; padding-left:15px; }
 
 /** ADD TERMINO **/
-label, .label { width: 120px; float: left; }
+.componentbody .form-validate div, .componentbody .list_form div { margin-bottom: 10px; }
+.componentbody label, .label { width: 120px; float: left; }
+.componentbody input { border: 1px solid #CCCCCC; border-radius: 5px; padding: 2px; }
+.componentbody input.invalid { border-color: #ff0000; }
+.componentbody .textboxlist-bit-editable-input { border: none; border-radius: 0; }
 .textboxlist { float: left; width: 520px; }
-#cat_selector { margin-left: 120px; height: 100px; width: 520px; overflow-y: scroll; border: 1px solid #cccccc; }
-#cat_selector div.categoria { width: 90px; float: left; margin: 5px 5px; cursor: pointer; }
+#cat_selector { margin-left: 120px; height: 100px; width: 545px; overflow-y: scroll; border: 1px solid #cccccc; }
+#cat_selector div.categoria { width: 95px; float: left; margin: 5px 5px; cursor: pointer; }
 #cat_text_field { width: 520px; }
 #google_imgs { margin-left: 120px; height: 350px; width: 620px; overflow-y: scroll; border: 1px solid #cccccc; }
 #selected_image { text-align: center; vertical-align: middle; margin-left: 120px; height: 150px; width: 150px; border: 1px solid #cccccc; }
-#limpiar, #buscar_imagenes, #eliminar_imagen { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 4px 8px }
+#limpiar, #buscar_imagenes, #eliminar_imagen, #cancelar_modificacion { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 2px 8px; background: #eeeeee; }
+#limpiar:hover, #buscar_imagenes:hover, #eliminar_imagen:hover, #cancelar_modificacion:hover { background: #dddddd; }
+#submit:hover { background: #dddddd; cursor: pointer}
 #keyboard {position: fixed; bottom: 0; right: 0}
+#eliminar_imagen { float: left; margin-left: 160px; }
+#limpiar { display: inline-block; margin-left: 10px; }
 
 /** GET LIST **/
 .checkbox_label { float: none; width: auto; cursor: pointer; }
@@ -38,6 +46,15 @@ label, .label { width: 120px; float: left; }
 /*#format_preview { margin-left: 120px;  }*/
 
 /** ADD TERMINO POPUP TERMINOS REPETIDOS **/
-.terminos_parecidos_popup td:hover { background-color: #FF5500;}
+.terminos_parecidos_popup .clicable:hover { background-color: #FF5500; cursor: pointer}
 .terminos_parecidos_popup td { padding: 5px; }
 .terminos_parecidos_popup img { vertical-align: middle;}
+
+/** TESTS **/
+.preg_bloque { text-align: center; display: none; }
+.botones { text-align: center; }
+.finalizar { text-align: right; }
+
+/** Visibilidad **/
+.visible {visibility: visible; display: block}
+.invisible {visibility:hidden; display: none}

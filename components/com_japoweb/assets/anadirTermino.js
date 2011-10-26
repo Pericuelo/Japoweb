@@ -95,9 +95,11 @@ function obtenerTermino(id){
 function cargarTermino(termino, id){
 	limpiarForm();
 	term = JSON.decode(termino);
-
+	$('info_message').removeClass('invisible');
+	$('info_message_text').set('html', 'Estás modificando la palábra: '+term[0].kana+' ('+term[0].significado+'). Puedes corregirla y/o completarla... ');
 	$('old').set('value', id);
 	$('kana').set('value',term[0].kana);
+	kana2romaji('kana','romaji',false);
 	if (term[0].kanji != null)
 		$('kanji').set('value',term[0].kanji);
 	$('significado').set('value',term[0].significado);
@@ -109,8 +111,11 @@ function cargarTermino(termino, id){
 }
 
 function limpiarForm(){
+	$('info_message').addClass('invisible');
+	$('info_message_text').set('html', '');
 	$('old').set('value', 0);
 	$('kana').set('value','');
+	$('romaji').set('value','');
 	$('kanji').set('value','');
 	$('significado').set('value','');
 	eliminar_imagen();
