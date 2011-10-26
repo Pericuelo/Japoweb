@@ -47,7 +47,7 @@ JHTML::_('behavior.formvalidation');
 	<dt class="message">Message</dt>
 	<dd class="message message fade">
 		<ul>
-			<li><span><span  id="info_message_text"></span> <span id="cancelar_modificacion" onclick="limpiarForm()">Dejala como está. No quiero modificar esta palábra</span></li>
+			<li><span id="info_message_text"></span> <span id="cancelar_modificacion" onclick="limpiarForm()">Dejala como está. No quiero modificar esta palábra</span></li>
 		</ul>
 	</dd>
 	</dl>
