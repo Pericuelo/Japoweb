@@ -10,7 +10,7 @@ class JapowebModelAddtermino extends JModel {
 		
 	function getCategorias() {
 		$db =& JFactory::getDBO();
-		$db->setQuery("SELECT id, nombre FROM #__jw_categoria ORDER BY num_palabras DESC");
+		$db->setQuery("SELECT id, nombre, num_palabras FROM #__jw_categoria ORDER BY num_palabras DESC");
 		
 		return $db->loadObjectList();
 	}
@@ -91,7 +91,7 @@ class JapowebModelAddtermino extends JModel {
 			for($i = 0; $i < sizeof($categoriasArr); $i++){
 				if($categoriasArr[$i] == 'null'){
 					//Creamos categoria
-					$query = "INSERT INTO #__jw_categoria (`nombre`) VALUES ('$categorias_nombresArr[$i]')";
+					$query = "INSERT INTO #__jw_categoria (`nombre`, num_palabras) VALUES ('$categorias_nombresArr[$i]', 1)";
 			
 					$db->setQuery($query);
 					$success = $db->query();
@@ -104,13 +104,18 @@ class JapowebModelAddtermino extends JModel {
 					}				
  				} else {
  					//Comprobamos que sea correcta
-					$query = "SELECT id FROM #__jw_categoria WHERE id = '$categoriasArr[$i]'";
+					$query = "SELECT id FROM #__jw_categoria WHERE id = $categoriasArr[$i]";
  					$db->setQuery($query);
 					$res_id = $db->loadResult();
 					if ($res_id != $categoriasArr[$i]){
 						//No hemos de cancelar por esto... a lo mejor conseguimos guardar la palabra
 						$categoriasArr[$i] = null;	
-					}				
+					} else {
+						$sql = "UPDATE #__jw_categoria c 
+							SET num_palabras = (SELECT COUNT(*) FROM #__jw_termino_categoria WHERE c.id = id_categoria) WHERE c.id = $categoriasArr[$i]";
+						$db->setQuery($sql);
+						$db->query();
+					}			
 				}
 			}
 		}
@@ -205,7 +210,7 @@ class JapowebModelAddtermino extends JModel {
 			for($i = 0; $i < sizeof($categoriasArr); $i++){
 				if($categoriasArr[$i] == 'null'){
 					//Creamos categoria
-					$query = "INSERT INTO #__jw_categoria (`nombre`) VALUES ('$categorias_nombresArr[$i]')";
+					$query = "INSERT INTO #__jw_categoria (nombre, num_palabras) VALUES ('$categorias_nombresArr[$i]', 1)";
 			
 					$db->setQuery($query);
 					$success = $db->query();
@@ -224,7 +229,12 @@ class JapowebModelAddtermino extends JModel {
 					if ($res_id != $categoriasArr[$i]){
 						//No hemos de cancelar por esto... a lo mejor conseguimos guardar la palabra
 						$categoriasArr[$i] = null;	
-					}				
+					} else {
+						$sql = "UPDATE #__jw_categoria c 
+							SET num_palabras = (SELECT COUNT(*) FROM #__jw_termino_categoria WHERE c.id = id_categoria) WHERE c.id = $categoriasArr[$i]";
+						$db->setQuery($sql);
+						$db->query();
+					}					
 				}
 			}
 		}

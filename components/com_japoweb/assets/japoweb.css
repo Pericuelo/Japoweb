@@ -29,7 +29,8 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 .componentbody .textboxlist-bit-editable-input { border: none; border-radius: 0; }
 .textboxlist { float: left; width: 520px; }
 #cat_selector { margin-left: 120px; height: 100px; width: 545px; overflow-y: scroll; border: 1px solid #cccccc; }
-#cat_selector div.categoria { width: 95px; float: left; margin: 5px 5px; cursor: pointer; }
+#cat_selector div.categoria { width: 95px; float: left; margin: 5px 5px; cursor: pointer; white-space: nowrap; overflow: hidden }
+#cat_selector div.categoria:hover { background-color:#9FF; }
 #cat_text_field { width: 520px; }
 #google_imgs { margin-left: 120px; height: 350px; width: 620px; overflow-y: scroll; border: 1px solid #cccccc; }
 #selected_image { text-align: center; vertical-align: middle; margin-left: 120px; height: 150px; width: 150px; border: 1px solid #cccccc; }

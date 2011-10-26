@@ -77,7 +77,7 @@ JHTML::_('behavior.formvalidation');
 			<input id="cat_text_field" type="text" value="<?php echo $this->termino->categorias; ?>"/><span id="limpiar" onclick="textBo.clear()">Limpiar</span>
 			<div id="cat_selector">
 				<?php foreach($this->categorias as $categoria): ?>
-					<div class="categoria"><span id="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?><span></div>
+					<div class="categoria"><? echo '('.$categoria->num_palabras.') '; ?><span id="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre ?></span></div>
 				<?php endforeach; ?>
 			</div>
 			<!-- En realidad guardamos aquí los id's de las categorias de la forma "1|34|6|28|"... -->
