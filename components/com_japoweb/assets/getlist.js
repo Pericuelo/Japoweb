@@ -38,7 +38,8 @@ function addFormat(anchor) {
 	
 	href = anchor.href+categorias+format+info+catJoin;
 	
-	window.open(href,'target=_blank');
+	newwindow = window.open(href,'target=_blank');
+	if (window.focus) {newwindow.focus()}
 	
 	return false;
 }
