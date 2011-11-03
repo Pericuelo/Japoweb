@@ -23,7 +23,7 @@ window.addEvent( 'domready', function() {
     	if(e.key == 'enter') { e.stop(); }
   	});
   	$('image_query').addEvent('keypress',function(e) {
-    	if(e.key == 'enter') { e.stop(); buscarImagenes('image_query', 20); }
+    	if(e.key == 'enter') { buscarImagenes('image_query', 20); }
   	});
 });
 
