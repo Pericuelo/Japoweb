@@ -55,6 +55,8 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 .preg_bloque { text-align: center; display: none; }
 .botones { text-align: center; }
 .finalizar { text-align: right; }
+.wrong { color: #ff1818; }
+.correct { color: #426aff; }
 
 /** Visibilidad **/
 .visible {visibility: visible; display: block}
