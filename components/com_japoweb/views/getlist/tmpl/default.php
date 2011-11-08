@@ -22,7 +22,7 @@ JHTML::stylesheet($filenameCss, $path);
 		<div id="cat_selector">
 			<?php foreach($this->categorias as $categoria): ?>
 				<div class="categoria">
-					<input type="checkbox" name="categoria" value="<?php echo $categoria->id; ?>">
+					<input type="checkbox" name="categoria" value="<?php echo $categoria->id; ?>" id="<?php echo $categoria->id; ?>">
 					<label class="checkbox_label" for="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></label>
 				</div>
 			<?php endforeach; ?>
