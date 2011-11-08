@@ -58,7 +58,9 @@ $teclado = ($this->resp == "kana" || $this->resp == "kanji");
 				<?php if(in_array('img', $this->info)): ?>
 					<div class="image">
 					<?php if(is_file("images/img_vocabulario/peques/".$pregunta->img)): ?>
-						<img src="images/img_vocabulario/peques/<?php echo $pregunta->img ?>"/>
+						<img src="images/img_vocabulario/peques/<?php echo $pregunta->img ?>" alt="<?php echo $pregunta->significado ?>"/>
+					<?php else: ?>
+						<div class="no_image"><?php echo $pregunta->significado ?></div>
 					<?php endif; ?>
 					</div>
 				<?php endif; ?>

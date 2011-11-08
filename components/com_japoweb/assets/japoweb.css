@@ -55,6 +55,8 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 /** TESTS **/
 .nota { color: #666666; font-style: italic; }
 .preg_bloque { text-align: center; display: none; }
+.image { height: 150px; text-align: center; }
+.no_image { margin: 0 auto; width: 150px; background: url(NoPhotoSmall.jpg); line-height: 150px; vertical-align: middle; }
 .botones { text-align: center; }
 .finalizar { text-align: right; }
 .wrong { color: #ff1818; }

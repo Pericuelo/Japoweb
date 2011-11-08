@@ -25,7 +25,7 @@ class JapowebModelTest extends JModel {
 		$db =& JFactory::getDBO();
 		
 		// Primero seleccionamos las palabras que aún no le han salido
-		$query = "SELECT t.id, kanji, kana, significado, i.fichero as rand FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
+		$query = "SELECT t.id, kanji, kana, significado, i.fichero as img FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 		$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
 		$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user IS NULL ORDER BY RAND() LIMIT 0, $numPreg";
 		
@@ -39,7 +39,7 @@ class JapowebModelTest extends JModel {
 			$limit = $numPreg - count($pregNuevas);
 			
 			// Si no hay suficientes preguntas con las nuevas, cojemos las que más errores tienen
-			$query = "SELECT t.id, kanji, kana, significado, i.fichero, (rp.ok - rp.ko) AS balance, (rp.ok + rp.ko) AS total FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
+			$query = "SELECT t.id, kanji, kana, significado, i.fichero as img, (rp.ok - rp.ko) AS balance, (rp.ok + rp.ko) AS total FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 			$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
 			$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user = $userId ORDER BY total ASC, balance ASC LIMIT 0, $limit";
 			
