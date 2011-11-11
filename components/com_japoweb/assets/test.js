@@ -4,6 +4,8 @@
 window.addEvent('domready', function() {
 	$('bloque_'+currentId).setStyle('display','block');
 	
+	$('anterior').set('disabled','disabled');
+	
 	if(teclado) {
 		var langs = [];
 		langs.push("JP");
@@ -17,6 +19,12 @@ window.addEvent('domready', function() {
 			currentId--;
 			$('bloque_'+currentId).setStyle('display','block');
 			
+			$('siguiente').disabled = '';
+			
+			if(currentId == 0) {
+				$('anterior').set('disabled','disabled');
+			}
+			
 			if(teclado)
 				VirtualKeyboard.toggle('respuesta_'+currentId, 'keyboard');
 		}
@@ -27,6 +35,12 @@ window.addEvent('domready', function() {
 			$('bloque_'+currentId).setStyle('display','none');
 			currentId++;
 			$('bloque_'+currentId).setStyle('display','block');
+			
+			$('anterior').disabled = '';
+			
+			if(currentId == max-1) {
+				$('siguiente').set('disabled','disabled');
+			}
 			
 			if(teclado)
 				VirtualKeyboard.toggle('respuesta_'+currentId, 'keyboard');
