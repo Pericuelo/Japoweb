@@ -27,12 +27,16 @@ class JapowebModelTest extends JModel {
 		// Primero seleccionamos las palabras que aún no le han salido
 		$query = "SELECT t.id, kanji, kana, significado, i.fichero as img FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 		$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
-		$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user IS NULL ORDER BY RAND() LIMIT 0, $numPreg";
+		$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user IS NULL GROUP BY t.id ORDER BY RAND() LIMIT 0, $numPreg";
 		
 		$db->setQuery($query);
-		// echo $db->getQuery();
 		
 		$pregNuevas = $db->loadObjectList();
+		
+		foreach($pregNuevas as $preg) {
+			$ids[] = $preg->id;
+		}
+	
 		
 		$pregHechas = array();
 		if(count($pregNuevas) < $numPreg) {
@@ -41,7 +45,7 @@ class JapowebModelTest extends JModel {
 			// Si no hay suficientes preguntas con las nuevas, cojemos las que más errores tienen
 			$query = "SELECT t.id, kanji, kana, significado, i.fichero as img, (rp.ok - rp.ko) AS balance, (rp.ok + rp.ko) AS total FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 			$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
-			$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user = $userId ORDER BY total ASC, balance ASC LIMIT 0, $limit";
+			$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user = $userId AND t.id NOT IN (".implode(",",$ids).") GROUP BY t.id ORDER BY total ASC, balance ASC LIMIT 0, $limit";
 			
 			$db->setQuery($query);
 			$pregHechas = $db->loadObjectList();
@@ -71,11 +75,23 @@ class JapowebModelTest extends JModel {
 			$rCorrecta = $db->loadResult();
 			
 			// Miramos si la respuesta tiene varias posibilidades
+			$rAOk = false;
+			
+			// Para significado
 			if($respField == "significado") {
 				if(strpos($rCorrecta,",")) {
 					// Tiene varias posibles respuestas
 					$rCorrectaArray = explode(",",$rCorrecta);
-					$rAOk = false;
+					foreach($rCorrectaArray as $rA) {
+						$rAOk = $rAOk || !strcasecmp(trim($rA),trim($respuesta));
+					}
+				}
+			}
+			
+			// Para kana
+			if($respField == "kana") {
+				if(strpos($rCorrecta,"-")) {
+					$rCorrectaArray = explode("-",$rCorrecta);
 					foreach($rCorrectaArray as $rA) {
 						$rAOk = $rAOk || !strcasecmp(trim($rA),trim($respuesta));
 					}
@@ -128,14 +144,14 @@ class JapowebModelTest extends JModel {
 		$db =& JFactory::getDBO();
 		
 		// Guardamos a la bdd el ko. Es lo mismo que el if anterior pero al revés (sumamos al ko).
-		$db->setQuery("SELECT count(id_user) FROM #__jw_registro_preguntas WHERE id_user = $idUser AND id_termino = $idPregunta");
+		$db->setQuery("SELECT count(id_user) FROM #__jw_registro_preguntas WHERE id_user = $idUser AND id_termino = $idTermino");
 		
 		if($db->loadResult()) {
 			// Si existe hacemos un update con un +1 al ko
-			$query = "UPDATE #__jw_registro_preguntas SET ko = ko+1 WHERE id_user = $idUser AND id_termino = $idPregunta";
+			$query = "UPDATE #__jw_registro_preguntas SET ko = ko+1 WHERE id_user = $idUser AND id_termino = $idTermino";
 		} else {
 			// Si no existe la creamos. Por defecto, 0 ok 1 ko.
-			$query = "INSERT INTO #__jw_registro_preguntas (id_user, id_termino, ok, ko) VALUES ($idUser, $idPregunta, 0, 1)";
+			$query = "INSERT INTO #__jw_registro_preguntas (id_user, id_termino, ok, ko) VALUES ($idUser, $idTermino, 0, 1)";
 		}
 		$db->setQuery($query);
 		$db->query();

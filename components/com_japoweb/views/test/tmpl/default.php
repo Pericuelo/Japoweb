@@ -72,7 +72,7 @@ JHTML::stylesheet($filenameCss, $path);
 				<div class="label">Se preguntará:</div>
 				<div class="right_label">
 					<input type="radio" name="resp" value="kana" /> Kana<br/>
-					<input type="radio" name="resp" value="kanji" /> Kanji<br/>
+					<!-- <input type="radio" name="resp" value="kanji" /> Kanji<br/> -->
 					<input type="radio" name="resp" value="significado" checked="checked"/> Significado<br/>
 				</div>
 			</div>

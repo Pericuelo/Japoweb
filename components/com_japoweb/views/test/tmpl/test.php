@@ -55,6 +55,9 @@ $teclado = ($this->resp == "kana" || $this->resp == "kanji");
 		<div class="preg_bloque" id="bloque_<?php echo $count; ?>">
 			<!-- Pregunta -->
 			<div class="pregunta">
+				<div class="pregunta_num">
+					Pregunta <?php echo $count+1; ?> de <?php echo $this->maxPreg; ?>.
+				</div>
 				<?php if(in_array('img', $this->info)): ?>
 					<div class="image">
 					<?php if(is_file("images/img_vocabulario/peques/".$pregunta->img)): ?>
@@ -84,6 +87,7 @@ $teclado = ($this->resp == "kana" || $this->resp == "kanji");
 				<!-- A posar si es necesita el kana: -->
 				<input type="text" <?php if($teclado) { echo 'class="keyboardInput"'; } ?>
 					name="respuesta[<?php echo $count; ?>]" id="respuesta_<?php echo $count; ?>" onfocus="VirtualKeyboard.attachInput(this)" />
+				<div class="nota">La respuesta debe ser <?php if($this->resp == "significado") echo "el"; else echo "en"; ?> <?php echo $this->resp; ?></div>
 			</div>
 		</div>
 		<?php $count++ ?>
