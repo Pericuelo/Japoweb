@@ -35,8 +35,8 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 #cat_text_field { width: 520px; }
 #google_imgs { margin-left: 120px; height: 350px; width: 620px; overflow-y: scroll; border: 1px solid #cccccc; }
 #selected_image { text-align: center; vertical-align: middle; margin-left: 120px; height: 150px; width: 150px; border: 1px solid #cccccc; }
-#limpiar, #buscar_imagenes, #eliminar_imagen, #cancelar_modificacion { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 2px 8px; background: #eeeeee; }
-#limpiar:hover, #buscar_imagenes:hover, #eliminar_imagen:hover, #cancelar_modificacion:hover { background: #dddddd; }
+#limpiar, #buscar_imagenes, #eliminar_imagen, #cancelar_modificacion, #guardar_orden { cursor: pointer; border: 1px solid #CCCCCC; border-radius: 5px; padding: 2px 8px; background: #eeeeee; }
+#limpiar:hover, #buscar_imagenes:hover, #eliminar_imagen:hover, #cancelar_modificacion:hover, #guardar_orden:hover { background: #dddddd; }
 #submit:hover { background: #dddddd; cursor: pointer}
 #keyboard {position: fixed; bottom: 0; right: 0}
 #eliminar_imagen { float: left; margin-left: 160px; }
@@ -65,3 +65,8 @@ body{ font-family:Geneva, Verdana, sans-serif; }
 /** Visibilidad **/
 .visible {visibility: visible; display: block}
 .invisible {visibility:hidden; display: none}
+
+/** Ordenar Categorias **/
+#sortable-list    { padding:0; }
+#sortable-list li  { padding:4px 8px; color:#000; cursor:move; list-style:none; width:500px; background:#ddd; margin:10px 0; border:1px solid #999; }
+#message-box    { background:#fffea1; border:2px solid #fc0; padding:4px 8px; margin:0 0 14px 0; width:500px; }
