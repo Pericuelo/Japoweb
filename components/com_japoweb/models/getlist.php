@@ -61,7 +61,7 @@ class JapowebModelGetlist extends JModel {
 			$query .= " ";
 		}
 		
-		$query .= "GROUP BY t.id";
+		$query .= "GROUP BY t.id ORDER BY tc.orden";
 		
 		$db->setQuery($query);
 		
