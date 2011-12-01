@@ -6,6 +6,19 @@ window.addEvent('domready', function() {
 	
 	$('anterior').set('disabled','disabled');
 	
+	$('maincolumn_full').addEvent('keydown', function(event) {
+		if(event.key == "enter" || event.key == "right") {
+			$('siguiente').fireEvent('click');
+			$('respuesta_'+currentId).focus();
+			return false;
+		}
+		if(event.key == "left") {
+			$('anterior').fireEvent('click');
+			$('respuesta_'+currentId).focus();
+			return false;
+		}
+	});
+	
 	if(teclado) {
 		var langs = [];
 		langs.push("JP");

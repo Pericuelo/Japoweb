@@ -85,7 +85,7 @@ $teclado = ($this->resp == "kana" || $this->resp == "kanji");
 			<!-- Respuesta -->
 			<div class="respuesta">
 				<!-- A posar si es necesita el kana: -->
-				<input type="text" <?php if($teclado) { echo 'class="keyboardInput"'; } ?>
+				<input type="text" autocomplete="off" <?php if($teclado) { echo 'class="keyboardInput"'; }  ?>
 					name="respuesta[<?php echo $count; ?>]" id="respuesta_<?php echo $count; ?>" onfocus="VirtualKeyboard.attachInput(this)" />
 				<div class="nota">La respuesta debe ser <?php if($this->resp == "significado") echo "el"; else echo "en"; ?> <?php echo $this->resp; ?></div>
 			</div>
