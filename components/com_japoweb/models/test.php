@@ -33,10 +33,10 @@ class JapowebModelTest extends JModel {
 		
 		$pregNuevas = $db->loadObjectList();
 		
+		$ids = array();
 		foreach($pregNuevas as $preg) {
 			$ids[] = $preg->id;
 		}
-	
 		
 		$pregHechas = array();
 		if(count($pregNuevas) < $numPreg) {
@@ -45,8 +45,11 @@ class JapowebModelTest extends JModel {
 			// Si no hay suficientes preguntas con las nuevas, cojemos las que más errores tienen
 			$query = "SELECT t.id, kanji, kana, significado, i.fichero as img, (rp.ok - rp.ko) AS balance, (rp.ok + rp.ko) AS total FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 			$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
-			$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user = $userId AND t.id NOT IN (".implode(",",$ids).") GROUP BY t.id ORDER BY total ASC, balance ASC LIMIT 0, $limit";
-			
+			$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user = $userId";
+			if(count($ids) > 0)
+				$query .= " AND t.id NOT IN (".implode(",",$ids).") ";
+			$query .= " GROUP BY t.id ORDER BY total ASC, balance ASC LIMIT 0, $limit";
+
 			$db->setQuery($query);
 			$pregHechas = $db->loadObjectList();
 		}
@@ -76,12 +79,29 @@ class JapowebModelTest extends JModel {
 			
 			// Miramos si la respuesta tiene varias posibilidades
 			$rAOk = false;
+
+			// echo "Antes: rCorrecta: $rCorrecta, respuesta: $respuesta<br/>";
+			
+			// Eliminamos todo el contenido entre parentesis de la respuesta y la pregunta
+			$rCorrecta =  preg_replace('#\(.*\)#', '', $rCorrecta);
+			$respuesta =  preg_replace('#\(.*\)#', '', $respuesta);
+			
+			// echo "Después: rCorrecta: $rCorrecta, respuesta: $respuesta<br/><br/>";
 			
 			// Para significado
 			if($respField == "significado") {
 				if(strpos($rCorrecta,",")) {
 					// Tiene varias posibles respuestas
 					$rCorrectaArray = explode(",",$rCorrecta);
+					foreach($rCorrectaArray as $rA) {
+						$rAOk = $rAOk || !strcasecmp(trim($rA),trim($respuesta));
+					}
+				}
+				
+				// Repetimos el paso anterior para el separador "/"
+				if(strpos($rCorrecta,"/")) {
+					// Tiene varias posibles respuestas
+					$rCorrectaArray = explode("/",$rCorrecta);
 					foreach($rCorrectaArray as $rA) {
 						$rAOk = $rAOk || !strcasecmp(trim($rA),trim($respuesta));
 					}
@@ -103,7 +123,10 @@ class JapowebModelTest extends JModel {
 			} else {
 				$db->setQuery("SELECT kana, kanji, significado FROM #__jw_termino WHERE id = $idPregunta");
 				$result = $db->loadObject();
-				$result->respuestaKo = $respuesta;
+				
+				// Usamos el $respuestas[$key] porque $respuesta la hemos sobreescrito sin parentesis
+				$result->respuestaKo = $respuestas[$key];
+				
 				$resultadosKo[] = $result;
 				
 				$this->saveKo($idUser, $idPregunta);
