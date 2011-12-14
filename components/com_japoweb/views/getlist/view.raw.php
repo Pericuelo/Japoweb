@@ -37,7 +37,11 @@ class JapowebViewGetlist extends JView {
 		
 		$this->assign('info',$infoArray);
 		
-		parent::display('pdf');
+		if(JRequest::getVar('out') == "csv") {
+			parent::display('csv');
+		} else {
+			parent::display('pdf');
+		}
 	}
 
 }

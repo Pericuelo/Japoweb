@@ -66,4 +66,7 @@ JHTML::stylesheet($filenameCss, $path);
 	<div>
 		<a onclick="return addFormat(this);" href="index.php?option=com_japoweb&view=getlist&format=raw">Haz clic aquí para generar la lista</span>
 	</div>
+	<div>
+		<a onclick="return addFormat(this);" href="index.php?option=com_japoweb&view=getlist&format=raw&out=csv">Haz clic aquí para generar un CSV</span>
+	</div>
 </div>
