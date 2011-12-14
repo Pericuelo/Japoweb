@@ -24,10 +24,18 @@ class JapowebModelTest extends JModel {
 	function getPreguntas($userId, $categoria, $numPreg) {
 		$db =& JFactory::getDBO();
 		
+		// Ids que ya han salido
+		$query = "SELECT id_termino FROM #__jw_registro_preguntas WHERE id_user = $userId";
+		$db->setQuery($query);
+		
+		$idsEx = $db->loadResultArray();
+		
 		// Primero seleccionamos las palabras que aún no le han salido
 		$query = "SELECT t.id, kanji, kana, significado, i.fichero as img FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 		$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
-		$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user IS NULL GROUP BY t.id ORDER BY RAND() LIMIT 0, $numPreg";
+		$query .= " WHERE tc.id_categoria = $categoria ";
+		$query .= " AND t.id NOT IN (".implode(",",$idsEx).") ";
+		$query .= " GROUP BY t.id ORDER BY RAND() LIMIT 0, $numPreg";
 		
 		$db->setQuery($query);
 		
