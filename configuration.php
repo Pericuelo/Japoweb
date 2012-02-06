@@ -14,7 +14,7 @@ var $debug_lang = '0';
 var $dbtype = 'mysql';
 var $host = 'localhost';
 var $user = 'root';
-var $password = 'my12xa';
+var $password = 'akira';
 var $db = 'japoweb';
 var $dbprefix = 'jos_';
 /* Server Settings */
