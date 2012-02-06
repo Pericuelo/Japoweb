@@ -28,20 +28,22 @@ JHTML::stylesheet($filenameCss, $path);
 	</div>
 	
 	<div class="results">
-		<p>Resultados para <strong><?php echo $this->searched; ?></strong></p>
-		<?php foreach($this->results as $result): ?>
-			<div class="result">
-				<div class="kanji">
-					<?php echo $result->kanji; ?>
+		<?php if(JRequest::getVar('submit')): ?>
+			<p>Resultados para <strong><?php echo $this->searched; ?></strong></p>
+			<?php foreach($this->results as $result): ?>
+				<div class="result">
+					<div class="kanji">
+						<?php echo $result->kanji; ?>
+					</div>
+					<div class="kana">
+						<?php echo $result->kana; ?>
+					</div>
+					<div class="sign">
+						<?php echo $result->significado; ?>
+					</div>
+					<div class="clr"></div>
 				</div>
-				<div class="kana">
-					<?php echo $result->kana; ?>
-				</div>
-				<div class="sign">
-					<?php echo $result->significado; ?>
-				</div>
-				<div class="clr"></div>
-			</div>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
+		<?php endif; ?>
 	</div>
 </div>
