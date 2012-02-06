@@ -20,6 +20,38 @@ defined('_JEXEC') or die('Restricted access'); ?>
 	<input type="hidden" name="return" value="<?php echo $return; ?>" />
 </form>
 <?php else : ?>
+
+<script>
+	window.addEvent('domready', function () {
+		$('modlgn_username').addEvents({
+			'focus' : function() {
+				if (this.get('value') == this.defaultValue) {
+					this.set('value', '');
+				}
+			},
+			
+			'blur' : function() {
+				if (this.get('value') == '') {
+					this.set('value', (this.defaultValue));
+				}
+			}
+		});
+		$('modlgn_passwd').addEvents({
+			'focus' : function() {
+				if (this.get('value') == this.defaultValue) {
+					this.set('value', '');
+				}
+			},
+			
+			'blur' : function() {
+				if (this.get('value') == '') {
+					this.set('value', (this.defaultValue));
+				}
+			}
+		});
+	});
+</script>
+
 <?php if(JPluginHelper::isEnabled('authentication', 'openid')) :
 		$lang->load( 'plg_authentication_openid', JPATH_ADMINISTRATOR );
 		$langScript = 	'var JLanguage = {};'.
@@ -35,12 +67,10 @@ endif; ?>
 	<?php echo $params->get('pretext'); ?>
 	<fieldset class="input">
 	<p id="form-login-username">
-		<label for="modlgn_username"><?php echo JText::_('Username') ?></label>:
-		<input id="modlgn_username" type="text" name="username" class="inputbox" alt="username" size="18" />
+		<input id="modlgn_username" type="text" name="username" class="inputbox" alt="username" size="25" value="<?php echo JText::_('Username') ?>"/>
 	</p>
 	<p id="form-login-password">
-		<label for="modlgn_passwd"><?php echo JText::_('Password') ?></label>:
-		<input id="modlgn_passwd" type="password" name="passwd" class="inputbox" size="18" alt="password" />
+		<input id="modlgn_passwd" type="password" name="passwd" class="inputbox" size="25" alt="password" value="<?php echo JText::_('Password') ?>"/>
 	</p>
 	<?php if(JPluginHelper::isEnabled('system', 'remember')) : ?>
 	<span id="form-login-remember">
