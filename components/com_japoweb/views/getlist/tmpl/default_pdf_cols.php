@@ -26,66 +26,69 @@ defined('_JEXEC') or die('Restricted access'); ?>
 			$terminoRight = $this->terminos[$i+$termsCol+$termsCol];
 		?>
 		<tr>
-			<?php if($this->img): ?>
-				<td class="image">
-				<?php if(is_file("images/img_vocabulario/peques/".$terminoLeft->img)): ?>
-					<span><img src="images/img_vocabulario/peques/<?php echo $terminoLeft->img ?>"/></span>
-				<?php endif; ?>
-				</td>
-			<?php endif; ?>
-			<?php if($this->kana): ?>
-				<td class="kana"><span><?php echo $terminoLeft->kana ?></span></td>
-			<?php endif; ?>
-			<?php if($this->kanji): ?>
-				<td class="kana"><span><?php echo $terminoLeft->kanji ?></span></td>
-			<?php endif; ?>
-			<?php if($this->romaji): ?>
-				<td class="kana romaji"><span class="romaji_word" id="<?php echo $i; ?>"><?php echo $terminoLeft->kana ?></span></td>
-			<?php endif; ?>
-			<?php if($this->sign): ?>
-				<td><span><?php echo $terminoLeft->significado ?></span></td>
-			<?php endif; ?>
+			<?php foreach($this->ordenedArray as $field):
+				switch($field) {
+					case "img":
+						echo $this->displayImage($terminoLeft->img, true);
+						break;
+					case "kana":
+						echo '<td class="kana"><span>'.$terminoLeft->kana.'</span></td>';
+						break;
+					case "kanji":
+						echo '<td class="kana"><span>'.$terminoLeft->kanji.'</span></td>';
+						break;
+					case "romaji":
+						echo '<td class="kana romaji"><span class="romaji_word" id="'.$i.'">'.$terminoLeft->kana.'</span></td>';
+						break;
+					case "sign":
+						echo '<td><span>'.$terminoLeft->significado.'</span></td>';
+						break;
+				}
+				endforeach;
+			?>
 			<td class="col_spacer"></td>
 			
-			<?php if($this->img): ?>
-				<td class="image">
-				<?php if(is_file("images/img_vocabulario/peques/".$terminoCenter->img)): ?>
-					<span><img src="images/img_vocabulario/peques/<?php echo $terminoCenter->img ?>"/></span>
-				<?php endif; ?>
-				</td>
-			<?php endif; ?>
-			<?php if($this->kana): ?>
-				<td class="kana"><span><?php echo $terminoCenter->kana ?></span></td>
-			<?php endif; ?>
-			<?php if($this->kanji): ?>
-				<td class="kana"><span><?php echo $terminoCenter->kanji ?></span></td>
-			<?php endif; ?>
-			<?php if($this->romaji): ?>
-				<td class="kana romaji"><span class="romaji_word" id="<?php echo $i+$termsCol; ?>"><?php echo $terminoCenter->kana ?></span></td>
-			<?php endif; ?>
-			<?php if($this->sign): ?>
-				<td><span><?php echo $terminoCenter->significado ?></span></td>
-			<?php endif; ?>
+			<?php foreach($this->ordenedArray as $field):
+				switch($field) {
+					case "img":
+						echo $this->displayImage($terminoCenter->img, true);
+						break;
+					case "kana":
+						echo '<td class="kana"><span>'.$terminoCenter->kana.'</span></td>';
+						break;
+					case "kanji":
+						echo '<td class="kana"><span>'.$terminoCenter->kanji.'</span></td>';
+						break;
+					case "romaji":
+						echo '<td class="kana romaji"><span class="romaji_word" id="'.$i.'">'.$terminoCenter->kana.'</span></td>';
+						break;
+					case "sign":
+						echo '<td><span>'.$terminoCenter->significado.'</span></td>';
+						break;
+				}
+				endforeach;
+			?>
 			<td class="col_spacer"></td>
 			
-			<?php if($this->img): ?>
-				<?php if(is_file("images/img_vocabulario/peques/".$terminoRight->img)): ?>
-					<td><span><img src="images/img_vocabulario/peques/<?php echo $terminoRight->img ?>"/></span></td>
-				<?php else: ?>
-					<td></td>
-				<?php endif; ?>
-			<?php endif; ?>
-			<?php if($this->kana): ?>
-				<td class="kana"><span><?php echo $terminoRight->kana ?></span></td>
-			<?php endif; ?>
-			<?php if($this->kanji): ?>
-				<td class="kana"><span><?php echo $terminoRight->kanji ?></span></td>
-			<?php endif; ?>
-			<?php if($this->romaji): ?>
-				<td class="kana romaji"><span class="romaji_word" id="<?php echo $i+$termsCol*2; ?>"><?php echo $terminoRight->kana ?></span></td>
-			<?php endif; ?>
-			<?php if($this->sign): ?>
-				<td><span><?php echo $terminoRight->significado ?></span></td>
-			<?php endif; ?>
+			<?php foreach($this->ordenedArray as $field):
+				switch($field) {
+					case "img":
+						echo $this->displayImage($terminoRight->img, true);
+						break;
+					case "kana":
+						echo '<td class="kana"><span>'.$terminoRight->kana.'</span></td>';
+						break;
+					case "kanji":
+						echo '<td class="kana"><span>'.$terminoRight->kanji.'</span></td>';
+						break;
+					case "romaji":
+						echo '<td class="kana romaji"><span class="romaji_word" id="'.$i.'">'.$terminoRight->kana.'</span></td>';
+						break;
+					case "sign":
+						echo '<td><span>'.$terminoRight->significado.'</span></td>';
+						break;
+				}
+				endforeach;
+			?>
 	<?php endfor; ?>
 <table>

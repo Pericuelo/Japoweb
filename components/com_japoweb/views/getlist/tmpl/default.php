@@ -11,6 +11,7 @@ $path = 'components/com_japoweb/assets/';
 $path = 'components/com_japoweb/assets/';
 
 JHTML::script($filenameJs, $path,  true);
+JHTML::script('japoweb.js', $path,  true);
 JHTML::stylesheet($filenameCss, $path);
 ?>
 
@@ -22,10 +23,17 @@ JHTML::stylesheet($filenameCss, $path);
 		<div id="cat_selector">
 			<?php foreach($this->categorias as $categoria): ?>
 				<div class="categoria">
-					<input type="checkbox" name="categoria" value="<?php echo $categoria->id; ?>" id="<?php echo $categoria->id; ?>">
+					<input type="checkbox" name="categoria[]" value="<?php echo $categoria->id; ?>" id="<?php echo $categoria->id; ?>">
 					<label class="checkbox_label" for="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></label>
 				</div>
 			<?php endforeach; ?>
+		</div>
+		<div class="right_label">
+			<p>Orden:
+				<a href="javascript:ordenar('alf');">Alfabetico</a> |
+				<a href="javascript:ordenar('masP');">Más palabras</a> |
+				<a href="javascript:ordenar('menosP');">Menos palabras</a>
+			</p>
 		</div>
 		<div class="right_label">
 			<div>
@@ -46,7 +54,7 @@ JHTML::stylesheet($filenameCss, $path);
 		<div>
 			<input checked="checked" type="radio" name="formato" value="cols"> Columnas
 			<input type="radio" name="formato" value="grid"> Cuadricula
-			<p style="margin-left: 120px; ">Ejemplo de formato: </p>
+			<p style="margin-left: 120px;">Ejemplo de formato: </p>
 			<img class="right_label" id="format_preview" src="<?php echo JURI::base()."components/com_japoweb/assets/img/cols.png"; ?>"/>
 		</div>
 		<div class="clr"></div>
@@ -54,13 +62,16 @@ JHTML::stylesheet($filenameCss, $path);
 	
 	<div>
 		<label for="informacion">Información:</label>
-		<div>
-			<input type="checkbox" name="info" value="img"> Image
-			<input type="checkbox" name="info" value="kana"> Kana
-			<input type="checkbox" name="info" value="romaji"> Romaji
-			<input type="checkbox" name="info" value="kanji"> Kanji
-			<input type="checkbox" name="info" value="sign"> Significado
+		<div class="right_label">
+			<ul id="sortable-list">
+				<li id="1"><input type="checkbox" name="info" value="img"> Imagen</li>
+				<li id="2"><input type="checkbox" name="info" value="kana"> Kana</li>
+				<li id="3"><input type="checkbox" name="info" value="romaji"> Romaji</li>
+				<li id="4"><input type="checkbox" name="info" value="kanji"> Kanji</li>
+				<li id="5"><input type="checkbox" name="info" value="sign"> Significado</li>
+			</ul>
 		</div>
+		<input type="hidden" id="order" value="1,2,3,4,5" />
 	</div>
 	
 	<div>

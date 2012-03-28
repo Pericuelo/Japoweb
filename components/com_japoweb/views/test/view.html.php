@@ -20,7 +20,7 @@ class JapowebViewTest extends JView {
 		
 		if(JRequest::getVar('layout') == 'test') { // Layout para responder las preguntas
 			// Recoger datos del formulario
-			$categoria = JRequest::getVar('categoria','','post'); // String
+			$categorias = JRequest::getVar('categoria','','post'); // Array
 			$numPreg = JRequest::getVar('num_preg','','post'); // String
 			$info = JRequest::getVar('info','','post'); // Array
 			$resp = JRequest::getVar('resp','','post'); // String
@@ -28,7 +28,7 @@ class JapowebViewTest extends JView {
 			$user =& JFactory::getUser();
 			$userId = $user->id;
 			
-			$preguntas = $model->getPreguntas($userId, $categoria, $numPreg);
+			$preguntas = $model->getPreguntas($userId, $categorias, $numPreg);
 			
 			// Hay que avisar al usuario si no hay suficientes preguntas en la categoria seleccionada
 			if(count($preguntas) < $numPreg) {
@@ -41,6 +41,10 @@ class JapowebViewTest extends JView {
 			$this->assign('info', $info);
 			$this->assign('resp', $resp);
 			$this->assign('numPreg', $numPreg);
+			
+			// INFO
+			/* $categorias = $model->getNombreCategorias($categoria);
+			$this->assignRef('categorias', $categorias); */
 			
 		} elseif(JRequest::getVar('layout') == 'results') { // Layout para mostrar los resultados
 			$preguntas = JRequest::getVar('pregunta');

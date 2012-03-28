@@ -24,25 +24,27 @@ defined('_JEXEC') or die('Restricted access'); ?>
 			<tr>
 		<?php endif; ?>
 		<td><span>
-			<?php if($img): ?>
-				<div class="image">
-				<?php if(is_file("images/img_vocabulario/peques/".$termino->img)): ?>
-					<img src="images/img_vocabulario/peques/<?php echo $termino->img ?>"/>
-				<?php endif; ?>
-				</div>
-			<?php endif; ?>
-			<?php if($kana): ?>
-				<?php echo $termino->kana ?><br/>
-			<?php endif; ?>
-			<?php if($kanji): ?>
-				<?php echo $termino->kanji ?><br/>
-			<?php endif; ?>
-			<?php if($this->romaji): ?>
-				<div class="romaji_word" id="<?php echo $count; ?>"><?php echo $termino->kana ?></div>
-			<?php endif; ?>
-			<?php if($sign): ?>
-				<?php echo $termino->significado ?><br/>
-			<?php endif; ?>
+			
+			<?php foreach($this->ordenedArray as $field):
+				switch($field) {
+					case "img":
+						echo $this->displayImage($termino->img, false);
+						break;
+					case "kana":
+						echo '<div>'.$termino->kana.'</div>';
+						break;
+					case "kanji":
+						echo '<div>'.$termino->kanji.'</div>';
+						break;
+					case "romaji":
+						echo '<div class="romaji_word" id="'.$count.'">'.$termino->kana.'</div>';
+						break;
+					case "sign":
+						echo '<div>'.$termino->significado.'</div>';
+						break;
+				}
+				endforeach;
+			?>
 		</span></td>
 		<?php if($count % 5 == 0): ?>
 			</tr>

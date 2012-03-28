@@ -17,13 +17,13 @@ JHTML::stylesheet($filenameCss, $path);
 <div class="componentbody">
 	<div>
 		<form method="post" action="index.php">
-			<input type="text" id="keyword" name="keyword" autocomplete="off" value="検索　（けんさく）。。。" class="keyboardInput" onfocus="VirtualKeyboard.attachInput(this)"/>
-			<input type="submit" name="submit" value="Buscar" />
-			<span class="nota"><input type="checkbox" name="use_keyboard" id="use_keyboard" />Usar teclado japonés</span>
+			<input type="hidden" name="layout" value="default" />
 			<input type="hidden" name="option" value="com_japoweb" />
 			<input type="hidden" name="view" value="jisho" />
 			<input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid'); ?>" />
-			<input type="hidden" name="option" value="com_japoweb" />
+			<input type="text" id="keyword" name="keyword" autocomplete="off" value="検索　（けんさく）。。。" class="keyboardInput" onfocus="VirtualKeyboard.attachInput(this)"/>
+			<input type="submit" name="submit" value="Buscar" />
+			<span class="nota"><input type="checkbox" name="use_keyboard" id="use_keyboard" />Usar teclado japonés</span>
 		</form>
 	</div>
 	

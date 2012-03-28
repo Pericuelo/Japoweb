@@ -34,8 +34,20 @@ class JapowebViewGetlist extends JView {
 		// La información a mostrar llegará en un string  del formato img|kana|sign. Los posibles valores son: img, kana, kanji i sign
 		$infoString = JRequest::getVar('info');
 		$infoArray = explode("|", $infoString);
-		
 		$this->assign('info',$infoArray);
+		
+		// Order
+		// 1.- Imagen, 2.- Kana, 3.- Romaji 4.- Kanji 5.- Significado
+		$order = JRequest::getVar('order');
+		$order = explode(",", $order);
+		$orderValues = array(1 => 'img', 2 => 'kana', 3 => 'romaji', 4 => 'kanji', 5 => 'sign');
+		foreach($order as $o) {
+			if(in_array($orderValues[$o], $infoArray)) {
+				$ordArr[] = $orderValues[$o];
+			}
+		}
+		
+		$this->assign('ordenedArray', $ordArr);
 		
 		if(JRequest::getVar('out') == "csv") {
 			parent::display('csv');
@@ -44,5 +56,24 @@ class JapowebViewGetlist extends JView {
 		}
 	}
 
+	function displayImage($file, $cols = false) {
+		$text = '';
+			
+		if($cols) {
+			$text = '<td class="image">';
+			if(is_file("images/img_vocabulario/peques/".$file)) {
+				$text .= '<span><img src="images/img_vocabulario/peques/'.$file.'"/></span>';
+			}
+			$text .= '</td>';
+		} else {
+			$text = '<div class="image">';
+			if(is_file("images/img_vocabulario/peques/".$file)) {
+				$text .= '<img src="images/img_vocabulario/peques/'.$file.'"/>';
+			}
+			$text .= "</div>";
+		}
+		
+		return $text;
+	}
 }
 

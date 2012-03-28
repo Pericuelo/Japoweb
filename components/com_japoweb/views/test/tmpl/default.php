@@ -9,6 +9,7 @@ $filenameCss = 'japoweb.css';
 $path = 'components/com_japoweb/assets/';
 
 JHTML::stylesheet($filenameCss, $path);
+JHTML::script('japoweb.js', $path,  true);
 ?>
 
 <?php
@@ -17,7 +18,6 @@ JHTML::stylesheet($filenameCss, $path);
 		// Redirect. No hay usuario logueado
 	}
 ?>
-
 
 <h1 class="componentheading"><?php echo JText::_('Test'); ?></h1>
 <div class="componentbody">
@@ -48,10 +48,18 @@ JHTML::stylesheet($filenameCss, $path);
 				<div id="cat_selector">
 					<?php foreach($this->categorias as $categoria): ?>
 						<div class="categoria">
-							<input type="radio" name="categoria" value="<?php echo $categoria->id; ?>" id="<?php echo $categoria->id; ?>" />
+							<input type="checkbox" name="categoria[]" value="<?php echo $categoria->id; ?>" id="<?php echo $categoria->id; ?>" />
 							<label class="checkbox_label" for="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></label>
 						</div>
 					<?php endforeach; ?>
+				</div>
+				<div class="label"></div>
+				<div class="right_label">
+					<p>Orden:
+						<a href="javascript:ordenar('alf');">Alfabetico</a> |
+						<a href="javascript:ordenar('masP');">Más palabras</a> |
+						<a href="javascript:ordenar('menosP');">Menos palabras</a>
+					</p>
 				</div>
 			</div>
 			<div>

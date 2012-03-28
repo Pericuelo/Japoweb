@@ -26,6 +26,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
 		$this->assign('sign',true);
 	if(in_array('romaji', $this->info))
 		$this->assign('romaji',true);
+	
 ?>
 
 <div style="position: absolute; top: 0; left: 0; display: none;" id="print_div">

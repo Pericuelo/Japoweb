@@ -8,17 +8,39 @@ jimport( 'joomla.application.component.model');
  
 class JapowebModelTest extends JModel {
 		
-	function getCategorias() {
+	function getCategorias($order = "") {
 		$db =& JFactory::getDBO();
-		$db->setQuery("SELECT id, nombre FROM #__jw_categoria ORDER BY num_palabras DESC");
+		
+		switch($order) {
+			case "alf":
+				$db->setQuery("SELECT id, nombre FROM #__jw_categoria ORDER BY nombre ASC");
+				break;
+			case "menosP":
+				$db->setQuery("SELECT id, nombre FROM #__jw_categoria ORDER BY num_palabras ASC");
+				break;
+			default:
+				$db->setQuery("SELECT id, nombre FROM #__jw_categoria ORDER BY num_palabras DESC");
+		}
 		
 		return $db->loadObjectList();
+	}
+	
+	function getNombreCategorias($ids) {
+		$db =& JFactory::getDBO();
+		$categorias = array();
+		
+		foreach($ids as $id) {
+			$db->setQuery("SELECT nombre FROM #__jw_categoria WHERE id = $id");
+			$categorias[] = $db->loadResult();
+		}
+		
+		return $categorias;
 	}
 	
 	/**
 	 * Función que recoge las preguntas para un usuario según su criterio de búsqueda.
 	 * Int $userId id del usuario logeado
-	 * Int $categoria id de la categoria que se usará para las preguntas
+	 * Array $categoria id de la categoria que se usará para las preguntas
 	 * Int $numPreguntas numero de preguntas (valor LIMIT de la query)
 	 */
 	function getPreguntas($userId, $categoria, $numPreg) {
@@ -33,7 +55,13 @@ class JapowebModelTest extends JModel {
 		// Primero seleccionamos las palabras que aún no le han salido
 		$query = "SELECT t.id, kanji, kana, significado, i.fichero as img FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 		$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
-		$query .= " WHERE tc.id_categoria = $categoria ";
+		
+		$query .= " WHERE ";
+		foreach($categoria as $key => $c) {
+			if($key != 0)
+				$query .= " OR ";
+			$query .= "tc.id_categoria = $c";
+		}
 		$query .= " AND t.id NOT IN (".implode(",",$idsEx).") ";
 		$query .= " GROUP BY t.id ORDER BY RAND() LIMIT 0, $numPreg";
 		
@@ -53,7 +81,13 @@ class JapowebModelTest extends JModel {
 			// Si no hay suficientes preguntas con las nuevas, cojemos las que más errores tienen
 			$query = "SELECT t.id, kanji, kana, significado, i.fichero as img, (rp.ok - rp.ko) AS balance, (rp.ok + rp.ko) AS total FROM #__jw_termino AS t LEFT JOIN #__jw_termino_categoria AS tc ON t.id = tc.id_termino";
 			$query .= " LEFT JOIN #__jw_registro_preguntas AS rp ON t.id = rp.id_termino LEFT JOIN #__jw_imagen AS i ON t.id = i.id_termino";
-			$query .= " WHERE tc.id_categoria = $categoria AND rp.id_user = $userId";
+			$query .= " WHERE ";
+			foreach($categoria as $key => $c) {
+				if($key != 0)
+					$query .= " OR ";
+				$query .= "tc.id_categoria = $c";
+			}
+			$query .= " AND rp.id_user = $userId";
 			if(count($ids) > 0)
 				$query .= " AND t.id NOT IN (".implode(",",$ids).") ";
 			$query .= " GROUP BY t.id ORDER BY total ASC, balance ASC LIMIT 0, $limit";
@@ -65,7 +99,6 @@ class JapowebModelTest extends JModel {
 		$preg = array_merge($pregNuevas,$pregHechas);
 		
 		return $preg;
-		
 	}
 	
 	/**
